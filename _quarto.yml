@@ -3,27 +3,37 @@ project:
   output-dir: docs
 
 website:
-  announcement:
-    icon: info-circle
-    dismissable: false
-    type: primary
-    position: above-navbar
-    content: "This website is currently under development! (edit or remove this banner in `_quarto.yml`)"
-  title: "EDS 123"
+  title: "EDS 222: Statistics for Environmental Data Science"
   favicon: images/bren-hex.png
   navbar:
     right:
       - href: index.qmd
         text: home
       - text: syllabus
-        href: https://docs.google.com/document/d/1hoo2DEroXlqBhhc6LmnsYFe8_7IbHny5yk7yXLfQp-4/edit?usp=sharing
+        href: https://docs.google.com/document/d/1dJG9aSjYxC9fU0moosvbPoZiq0WfCucHyS3u9qJL7h0
         target: _blank
       - text: course materials
         menu:
-          - text: week 1 (DD/MM)
+          - text: week 1 (9/29-10/3)
             href: course-materials/week1.qmd
-          - text: week 2 (DD/MM)
+          - text: week 2 (10/6-10/10)
             href: course-materials/week2.qmd
+          - text: week 3 (10/13-10/17)
+            href: course-materials/week3.qmd
+          - text: week 4 (10/20-10/24)
+            href: course-materials/week4.qmd
+          - text: week 5 (10/27-10/31)
+            href: course-materials/week5.qmd
+          - text: week 6 (11/3-11/7)
+            href: course-materials/week6.qmd
+          - text: week 7 (11/10-11/14)
+            href: course-materials/week7.qmd
+          - text: week 8 (11/17-11/21)
+            href: course-materials/week8.qmd
+          - text: week 9 (11/24-11/28)
+            href: course-materials/week9.qmd
+          - text: week 10 (12/1-12/5)
+            href: course-materials/week10.qmd
       - text: assignments
         href: assignments.qmd
       - text: resources
@@ -36,13 +46,13 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            url: https://github.com/UCSB-MEDS/EDS-website-template
+            url: https://github.com/eds-222-stats-f25/eds-222-stats-f25.github.io/
           - text: Report a Bug
-            url: https://github.com/UCSB-MEDS/EDS-website-template/issues
+            url: https://github.com/eds-222-stats-f25/eds-222-stats-f25.github.io/issues
   page-footer:
     background: dark
     right: This website is built with [{{< fa brands github title="the github octocat logo" >}}](https://github.com/UCSB-MEDS/EDS-website-template) and [Quarto](https://quarto.org/)
-    left: This work is licensed under \<your preferred license\> 
+    left: This work is licensed under CC-BY
 
 format:
   html:

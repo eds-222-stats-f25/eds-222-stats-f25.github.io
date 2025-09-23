@@ -58,23 +58,16 @@
   {
     "objectID": "index.html#course-description",
     "href": "index.html#course-description",
-    "title": "Course Title",
+    "title": "Statistics for Environmental Data Science",
     "section": "Course Description",
-    "text": "Course Description\nAdd your course description here (can be copied over from your syllabus or the affiliated Bren course page)"
+    "text": "Course Description\nStatistics is the science of collecting, manipulating, and analyzing empirical data. In this class, we will learn the statistical fundamentals that will enable us to draw conclusions about the environment and its interaction with social and economic systems. We will cover fundamental statistical concepts and tools, and then apply and expand upon those tools to learn some temporal and spatial statistical methods that are particularly helpful in environmental data science. Welcome!\n\nLearning objectives\nThe goal of this course is to enable MEDS students to confidently and competently apply statistical tools to socio-environmental datasets. Essential skills and concepts are:\n\nSummarize data numerically and graphically\nInterpret random variables\nSimulate data to test assumptions\nDescribe models using statistical notation\nDraw DAGs to clarify causal relationships\nQuantify uncertainty to perform inference"
   },
   {
     "objectID": "index.html#teaching-team",
     "href": "index.html#teaching-team",
-    "title": "Course Title",
+    "title": "Statistics for Environmental Data Science",
     "section": "Teaching Team",
-    "text": "Teaching Team\n\n\n\n\n\n\nInstructor\n\n\n\n\n\n\n\n\n\n\n\nInstructor’s Name\nEmail: email@ucsb.edu\nLearn more: link to preferred online profile here\n\n\n\n\n\nTA\n\n\n\n\n\n\n\n\n\n\n\nTA’s Name\nEmail: email@bren.ucsb.edu\nLearn more: link to preferred online profile here"
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "Course Title",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nAdd any acknowledgements here (e.g. any resources or people you drew lots of inspiration or help from when building your materials?)"
+    "text": "Teaching Team\n\n\n\n\n\n\nInstructor\n\n\n\n\n\n\n\n\n\n\n\nMax Czapanskiy\nEmail: maxczap@ucsb.edu\n\n\n\n\n\nTA\n\n\n\n\n\n\n\n\n\n\n\nNathan Grimes\nEmail: ngrimes@bren.ucsb.edu"
   },
   {
     "objectID": "assignments.html",
@@ -107,14 +100,14 @@
   {
     "objectID": "course-materials/discussion-materials/week1-discussion-slides.html#title-slide",
     "href": "course-materials/discussion-materials/week1-discussion-slides.html#title-slide",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "EDS 240: Discussion 1\nToday’s topic here\n\nWeek 1 | January 7th, 2024"
   },
   {
     "objectID": "course-materials/discussion-materials/week1-discussion-slides.html#slide-slug-here",
     "href": "course-materials/discussion-materials/week1-discussion-slides.html#slide-slug-here",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "Slide title"
   },
@@ -128,42 +121,42 @@
   {
     "objectID": "course-materials/lecture-slides/lecture1.1-slides.html#title-slide",
     "href": "course-materials/lecture-slides/lecture1.1-slides.html#title-slide",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "EDS 123: Lecture 1\nToday’s topic here\n\nWeek 1 | January 6th, 2025"
   },
   {
     "objectID": "course-materials/lecture-slides/lecture1.1-slides.html#welcome",
     "href": "course-materials/lecture-slides/lecture1.1-slides.html#welcome",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "Welcome to EDS 123!\n\n\nThis is the default text size\n\n\n\n\nI can apply a class selector from meds-slides-styles.scss to change the size of this text\n\n\n\nSimilarly, I can apply a class selector(s) to modify the appearance of a subset of text\n\nCheck out this demo presentation for examples of all the cool capabilities of Revealjs"
   },
   {
     "objectID": "course-materials/lecture-slides/lecture1.1-slides.html#block-level-styling",
     "href": "course-materials/lecture-slides/lecture1.1-slides.html#block-level-styling",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "You can also apply styles to blocks of content\n\nWe can use divs to apply styling to all content within the div gates (:::):\n::: {.selector1 .selector2}\nSome content\n:::\n\nFor example:\n\nThis text is bolded\nThis text is italicized"
   },
   {
     "objectID": "course-materials/lecture-slides/lecture1.1-slides.html#embedded-code",
     "href": "course-materials/lecture-slides/lecture1.1-slides.html#embedded-code",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "Here is some embedded & rendered code\n\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point()"
   },
   {
     "objectID": "course-materials/lecture-slides/lecture1.1-slides.html#rendered-code",
     "href": "course-materials/lecture-slides/lecture1.1-slides.html#rendered-code",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "Alternatively, we can render just the output"
   },
   {
     "objectID": "course-materials/lecture-slides/lecture1.1-slides.html#columns",
     "href": "course-materials/lecture-slides/lecture1.1-slides.html#columns",
-    "title": "EDS 123",
+    "title": "EDS 222: Statistics for Environmental Data Science",
     "section": "",
     "text": "You can arrange content in columns\n\n\n\nLearn more about the MEDS program on the Bren website."
   }
