@@ -34,15 +34,10 @@ website:
             href: course-materials/week9.qmd
           - text: week 10 (12/1-12/5)
             href: course-materials/week10.qmd
-      - text: assignments
-        href: assignments.qmd
-      - text: resources
-        menu: 
-          - text: recommended readings & resources
-            href: resources.qmd
-          - text: MEDS installation guide
-            href: https://ucsb-meds.github.io/MEDS-installation-guide/
-            target: _blank
+      - text: homework
+        href: homework.qmd
+      - text: final project
+        href: final-project.qmd
       - icon: github
         menu:
           - text: Source Code

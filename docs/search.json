@@ -56,6 +56,41 @@
     "text": "Assignment Reminders\n\n\n\n\n\n\n\n\n\nAssignment Type\nAssignment Title\nDate Assigned\nDate Due\n\n\n\n\nHW\nHomework Assignment #1\nDD/MM/YYYY\nDD/MM/YYYY, 11:59pm PT"
   },
   {
+    "objectID": "final-project.html",
+    "href": "final-project.html",
+    "title": "Final Project",
+    "section": "",
+    "text": "In your career as an environmental data scientist, you will often have to learn new analytic approaches to solve problems. The process of learning an unfamiliar statistical model is an important skill on its own. In this final project, you will use the skills you’ve developed in class to teach yourself a statistical model and apply it to an environmental dataset."
+  },
+  {
+    "objectID": "final-project.html#timeline",
+    "href": "final-project.html#timeline",
+    "title": "Final Project",
+    "section": "Timeline",
+    "text": "Timeline\nWe’re going to build up to the final project gradually over the whole quarter. These assignments are ungraded. Their purpose is to give you structure and get you instructor feedback early and often.\n\n\n\n\n\n\n\nWeek\nAssignment\n\n\n\n\n2\nChoose data and question\n\n\n3\nExploratory analysis\n\n\n6\nDescribe hypotheses with text and visuals\n\n\n8\nDescribe model in statistical notation and fit model to simulated data\n\n\n9\nFit model to real world data\n\n\n10\nFirst draft of blog post"
+  },
+  {
+    "objectID": "final-project.html#model-and-response-options",
+    "href": "final-project.html#model-and-response-options",
+    "title": "Final Project",
+    "section": "Model and response options",
+    "text": "Model and response options\nThe following list of models are suggestions for your final project together with the response characteristics they’re designed for. You are allowed to choose a model not on this list if you’re motivated to do so, but make sure to clear it with the instructors. The models are categorized by complexity level so you can choose a model aligned with your learning curve. You’re encouraged to discuss options with the instructors!\n\n\n\n\n\n\n\n\n\nComplexity level\nModel name\nResponse characteristics\nExample\n\n\n\n\nFamiliar\nGamma\nPositive continuous\nPollution concentrations\n\n\nNegative binomial\nCounts\nWater quality violations\n\n\nBeta\nProportions\nAlgae coverage on a reef\n\n\nMore complex\nHurdle\nInflated zeroes\nOccurrence of rare species\n\n\nSegmented\nBreakpoint\nPolicy intervention\n\n\nMultinomial\nUnordered categories\nLand cover types\n\n\nMost complex\nOrdinal\nOrdered categories\nLikert-scale surveys\n\n\nState-space\nTime series\nSalmon returns\n\n\nSpatial error\nSpatially autocorrelated\nEnergy costs in counties"
+  },
+  {
+    "objectID": "final-project.html#specifications",
+    "href": "final-project.html#specifications",
+    "title": "Final Project",
+    "section": "Specifications",
+    "text": "Specifications\n\nQuestion and data\n\nThe blog post provides context and background for the question\nThe source, relevance, and limitations of the data are explained\nThe raw data are summarized using text and figures\n\n\n\nStatistical model\n\nThe statistical model is explained conceptually and using formal statistical notation\nThe blog post demonstrates how to simulate data according to model assumptions\nThe blog post demonstrates that a model fit to the simulated data recovers the parameters\n\n\n\nInference\n\nHypotheses are stated in plain language and with visualizations\nModel estimates are presented with appropriate uncertainty (e.g., confidence intervals)\nA hypothesis is tested and the evidence is interpreted\n\n\n\nProfessionalism\n\nThe overall appearance of the blog post (e.g., figures, code outputs) is portfolio-quality\nThe writing is comprehensible to a technical audience\nThe code is well-organized and appropriately documented"
+  },
+  {
+    "objectID": "homework.html",
+    "href": "homework.html",
+    "title": "Homework",
+    "section": "",
+    "text": "Important: 11:59 PM submission deadline\n\n\n\nAll assignments are due at 11:59 PM on the dates listed in the table, below.\n\n\n\n\n\n\n\n\n\n\n\nAssignment Title\nDate Assigned\nDate Due\nRe-assessments Due\n\n\n\n\nHomework Assignment #1\n10/8\n10/17\n10/24\n\n\nHomework Assignment #2\n10/29\n11/7\n11/14\n\n\nHomework Assignment #3\n11/12\n11/26\n12/5"
+  },
+  {
     "objectID": "index.html#course-description",
     "href": "index.html#course-description",
     "title": "Statistics for Environmental Data Science",
@@ -68,13 +103,6 @@
     "title": "Statistics for Environmental Data Science",
     "section": "Teaching Team",
     "text": "Teaching Team\n\n\n\n\n\n\nInstructor\n\n\n\n\n\n\n\n\n\n\n\nMax Czapanskiy\nEmail: maxczap@ucsb.edu\n\n\n\n\n\nTA\n\n\n\n\n\n\n\n\n\n\n\nNathan Grimes\nEmail: ngrimes@bren.ucsb.edu"
-  },
-  {
-    "objectID": "assignments.html",
-    "href": "assignments.html",
-    "title": "Assignments",
-    "section": "",
-    "text": "Important: 11:59 PM submission deadline\n\n\n\nAll assignments are due at 11:59 PM on the dates listed in the table, below.\n\n\n\n\n\nAssignment Title\nDate Assigned\nDate Due\n\n\n\n\nHomework Assignment #1\nDD/MM/YYY\nDD/MM/YYY\n\n\nHomework Assignment #2\nDD/MM/YYY\nDD/MM/YYY\n\n\nHomework Assignment #3\nDD/MM/YYY\nDD/MM/YYY\n\n\nHomework Assignment #4\nDD/MM/YYY\nDD/MM/YYY"
   },
   {
     "objectID": "course-materials/labs/lab1.1.html",
