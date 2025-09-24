@@ -1,38 +1,18 @@
 ---
-title: "This week's topic(s)"
-subtitle: "Week 1"
-description: "Monday January 6^th^, 2025"
+title: "Random Variables"
+subtitle: "Week 1 (September 29 - October 3)"
+description: "Theme: Exploring Uncertainty"
 ---
-
-::: {.callout-tip}
-## The following layout is only a suggestion
-Add / arrange content in whatever way is best your course -- be sure to check out examples of other [MEDS course websites](https://github.com/UCSB-MEDS/EDS-website-template?tab=readme-ov-file#an-optional-eds-course-website-template) for inspiration!
-:::
 
 ## {{< fa person-chalkboard title="a person pointing at a chalkboard" >}} Lecture Materials {#lecture-materials}
 
-Consider linking to lecture materials in a table. Check out this [Markdown Tables Generator](https://www.tablesgenerator.com/markdown_tables) for quickly formatting tables.
-
-| Lecture slides | Lab |  Answer key |
-|----------------|------|------------|
-| [Lecture 1.1: topic X](lecture-slides/lecture1.1-slides.qmd){target="_blank"} | [Lab 1.1](labs/lab1.1.qmd) | [Lab 1.1 Key](keys/key1.1.qmd) |
-| [Lecture 1.2: topic X](https://docs.google.com/presentation/d/1RNYxX9qQhGsSob9sei0RoeRNIuxFwP6CuekkG1iCDkY/edit?usp=sharing){target="_blank"} | *NA* | *NA* |
-: {.hover .bordered tbl-colwidths="[50,25,25]"} 
-
-## {{< fa comments title="two speech bubbles" >}} Discussion Materials {#discussion-materials}
-
-You can also create buttons that link to content.
-
-::: {.center-text}
-[**This week's discussion topic here**]{.teal-text .body-text-m}
-
-[{{< fa person-chalkboard title="A person motioning at a chalkboard" >}} Discussion 1 slides](discussion-materials/week1-discussion-slides.qmd){.btn role="button" target="_blank"} 
-:::
+| Session | Topic  | Reading |
+|---------|--------|---------|
+| Lecture 1 | Populations, samples, and statistics | IMS |
+| Lab | Exploratory data analysis | IMS |
+| Lecture 2 | Random variables and distribution functions | IMS |
+: {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
 
-| Assignment Type | Assignment Title                              | Date Assigned  | Date Due                   |
-|-----------------|-----------------------------------------------|----------------|----------------------------|
-| HW              | [Homework Assignment #1](assignments/HW1.qmd) | DD/MM/YYYY     | DD/MM/YYYY, 11:59pm PT     |
-: {.hover .bordered tbl-colwidths="[20,30,20,30]"} 
-
+Nothing due in week 1. In week 2, you'll submit your choice of data and question for the final project. That can more time than you might expect, so it's a good idea to start this week!

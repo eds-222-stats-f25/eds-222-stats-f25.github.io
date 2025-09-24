@@ -17,11 +17,12 @@ We're going to build up to the final project gradually over the whole quarter. T
 | Week | Assignment |
 |----|----|
 | 2 | Choose data and question |
-| 3 | Exploratory analysis |
-| 6 | Describe hypotheses with text and visuals |
+| 4 | Exploratory analysis |
+| 7 | Describe hypotheses with text and visuals |
 | 8 | Describe model in statistical notation and fit model to simulated data |
 | 9 | Fit model to real world data |
-| 10 | First draft of blog post |
+| 10 | First draft of blog post due **Thursday 12/4** |
+| Exam | Final draft of blog post due **Thursday 12/11** |
 
 ## Model and response options
 
@@ -54,8 +55,8 @@ The following list of models are suggestions for your final project together wit
 ### Question and data
 
 * The blog post provides context and background for the question
-* The source, relevance, and limitations of the data are explained
-* The raw data are summarized using text and figures
+* The data are explained using text and figures
+* The relationships and causal relationships are described with a DAG
 
 ### Statistical model
 

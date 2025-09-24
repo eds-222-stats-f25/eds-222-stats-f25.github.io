@@ -1,23 +1,22 @@
 ---
-title: "Regression"
-subtitle: "Week 2 (October 6 - 10)"
-description: "Theme: Exploring Uncertainty"
+title: "GLMs and autocorrelation"
+subtitle: "Week 8 (November 17 - 21)"
+description: "Theme: Non-normal Data"
 ---
 
 ## {{< fa person-chalkboard title="a person pointing at a chalkboard" >}} Lecture Materials {#lecture-materials}
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Linear regression | IMS |
-| Lab | Rockfish survey gaps | IMS |
-| Lecture 2 | Multiple regression | IMS |
+| Lecture 1 | Poisson regression | IMS |
+| Lab | California wildfire occurrence | None |
+| Lecture 2 | Spatial and temporal autocorrelation | None |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
 
 | Assignment Type | Note                      |
 |-----------------|---------------------------|
-| Homework        | Homework 1 posted         |
-| Final project   | Choose data and question  |
-: {.hover .bordered tbl-colwidths="[20,30,20,30]"} 
+| Final project   | Describe model in statistical notation and fit model to simulated data |
+: {.hover .bordered tbl-colwidths="[20,30]"} 
 
