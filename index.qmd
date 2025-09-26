@@ -7,7 +7,7 @@ toc: false
 ---
 
 ::: {.center-text}
-![](images/bren-meds-hex.png){width="25%"}
+![](images/butterfly-net-sampling.png){width="80%"}
 :::
 
 ## Course Description
