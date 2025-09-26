@@ -21,7 +21,7 @@ We're going to build up to the final project gradually over the whole quarter. T
 | 7 | Describe hypotheses with text and visuals |
 | 8 | Describe model in statistical notation and fit model to simulated data |
 | 9 | Fit model to real world data |
-| 10 | First draft of blog post due **Thursday 12/4** |
+| 10 | First draft of blog post due **Monday 12/1** |
 | Exam | Final draft of blog post due **Thursday 12/11** |
 
 ## Model and response options

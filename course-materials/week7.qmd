@@ -8,9 +8,9 @@ description: "Theme: Non-normal Data"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Logistic regression | IMS |
-| Lab | **No class** | None |
-| Lecture 2 | Color of drinking water | None |
+| Lecture 1 | Logistic regression | [IMS Ch 9, 26](https://openintrostat.github.io/ims/model-logistic.html) |
+| Lab | **No class** | *None* |
+| Lecture 2 | Color of drinking water | *None* |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}

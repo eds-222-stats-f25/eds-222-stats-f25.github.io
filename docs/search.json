@@ -53,14 +53,14 @@
     "href": "course-materials/week5.html",
     "title": "Mechanics of Inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInference with mathematical models\nIMS\n\n\nLab\nType I and II errors\nIMS\n\n\nLecture 2\nLinear regression inference\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInference with mathematical models\nIMS Ch 13, 16-17\n\n\nLab\nType I and II errors\nIMS Ch 19-20\n\n\nLecture 2\nLinear regression inference\nIMS Ch 24"
   },
   {
     "objectID": "course-materials/week5.html#lecture-materials",
     "href": "course-materials/week5.html#lecture-materials",
     "title": "Mechanics of Inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInference with mathematical models\nIMS\n\n\nLab\nType I and II errors\nIMS\n\n\nLecture 2\nLinear regression inference\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInference with mathematical models\nIMS Ch 13, 16-17\n\n\nLab\nType I and II errors\nIMS Ch 19-20\n\n\nLecture 2\nLinear regression inference\nIMS Ch 24"
   },
   {
     "objectID": "course-materials/week5.html#assignment-reminders",
@@ -74,14 +74,14 @@
     "href": "course-materials/week6.html",
     "title": "Statistical power",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nStatistical power\nIMS\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nMultiple regression inference\nIMS Ch 25\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
   },
   {
     "objectID": "course-materials/week6.html#lecture-materials",
     "href": "course-materials/week6.html#lecture-materials",
     "title": "Statistical power",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nStatistical power\nIMS\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nMultiple regression inference\nIMS Ch 25\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
   },
   {
     "objectID": "course-materials/week6.html#assignment-reminders",
@@ -95,14 +95,14 @@
     "href": "course-materials/week3.html",
     "title": "Regression continued",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInteractions\nIMS\n\n\nLab\nMidterm review\nIMS\n\n\nLecture 2\nMidterm 1\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInteractions\nNone\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 1\nNone"
   },
   {
     "objectID": "course-materials/week3.html#lecture-materials",
     "href": "course-materials/week3.html#lecture-materials",
     "title": "Regression continued",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInteractions\nIMS\n\n\nLab\nMidterm review\nIMS\n\n\nLecture 2\nMidterm 1\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nInteractions\nNone\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 1\nNone"
   },
   {
     "objectID": "course-materials/week3.html#assignment-reminders",
@@ -116,14 +116,14 @@
     "href": "course-materials/week1.html",
     "title": "Random Variables",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPopulations, samples, and statistics\nIMS\n\n\nLab\nExploratory data analysis\nIMS\n\n\nLecture 2\nRandom variables and distribution functions\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPopulations, samples, and statistics\nIMS Ch 1-2\n\n\nLab\nExploratory data analysis\nIMS Ch 4-5\n\n\nLecture 2\nRandom variables and distribution functions\nNone"
   },
   {
     "objectID": "course-materials/week1.html#lecture-materials",
     "href": "course-materials/week1.html#lecture-materials",
     "title": "Random Variables",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPopulations, samples, and statistics\nIMS\n\n\nLab\nExploratory data analysis\nIMS\n\n\nLecture 2\nRandom variables and distribution functions\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPopulations, samples, and statistics\nIMS Ch 1-2\n\n\nLab\nExploratory data analysis\nIMS Ch 4-5\n\n\nLecture 2\nRandom variables and distribution functions\nNone"
   },
   {
     "objectID": "course-materials/week1.html#assignment-reminders",
@@ -137,14 +137,14 @@
     "href": "course-materials/week9.html",
     "title": "Spatial and temporal methods",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nMidterm review\nIMS\n\n\nLab\nMidterm 3\nNone\n\n\nLecture 2\nARIMA and kriging\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nMidterm review\nNone\n\n\nLab\nMidterm 3\nNone\n\n\nLecture 2\nARIMA and kriging\nNone"
   },
   {
     "objectID": "course-materials/week9.html#lecture-materials",
     "href": "course-materials/week9.html#lecture-materials",
     "title": "Spatial and temporal methods",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nMidterm review\nIMS\n\n\nLab\nMidterm 3\nNone\n\n\nLecture 2\nARIMA and kriging\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nMidterm review\nNone\n\n\nLab\nMidterm 3\nNone\n\n\nLecture 2\nARIMA and kriging\nNone"
   },
   {
     "objectID": "course-materials/week9.html#assignment-reminders",
@@ -165,7 +165,7 @@
     "href": "final-project.html#timeline",
     "title": "Final Project",
     "section": "Timeline",
-    "text": "Timeline\nWe’re going to build up to the final project gradually over the whole quarter. These assignments are ungraded. Their purpose is to give you structure and get you instructor feedback early and often.\n\n\n\n\n\n\n\nWeek\nAssignment\n\n\n\n\n2\nChoose data and question\n\n\n4\nExploratory analysis\n\n\n7\nDescribe hypotheses with text and visuals\n\n\n8\nDescribe model in statistical notation and fit model to simulated data\n\n\n9\nFit model to real world data\n\n\n10\nFirst draft of blog post due Thursday 12/4\n\n\nExam\nFinal draft of blog post due Thursday 12/11"
+    "text": "Timeline\nWe’re going to build up to the final project gradually over the whole quarter. These assignments are ungraded. Their purpose is to give you structure and get you instructor feedback early and often.\n\n\n\n\n\n\n\nWeek\nAssignment\n\n\n\n\n2\nChoose data and question\n\n\n4\nExploratory analysis\n\n\n7\nDescribe hypotheses with text and visuals\n\n\n8\nDescribe model in statistical notation and fit model to simulated data\n\n\n9\nFit model to real world data\n\n\n10\nFirst draft of blog post due Monday 12/1\n\n\nExam\nFinal draft of blog post due Thursday 12/11"
   },
   {
     "objectID": "final-project.html#model-and-response-options",
@@ -228,14 +228,14 @@
     "href": "course-materials/week8.html",
     "title": "GLMs and autocorrelation",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPoisson regression\nIMS\n\n\nLab\nCalifornia wildfire occurrence\nNone\n\n\nLecture 2\nSpatial and temporal autocorrelation\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPoisson regression\nNone\n\n\nLab\nCalifornia wildfire occurrence\nNone\n\n\nLecture 2\nSpatial and temporal autocorrelation\nNone"
   },
   {
     "objectID": "course-materials/week8.html#lecture-materials",
     "href": "course-materials/week8.html#lecture-materials",
     "title": "GLMs and autocorrelation",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPoisson regression\nIMS\n\n\nLab\nCalifornia wildfire occurrence\nNone\n\n\nLecture 2\nSpatial and temporal autocorrelation\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPoisson regression\nNone\n\n\nLab\nCalifornia wildfire occurrence\nNone\n\n\nLecture 2\nSpatial and temporal autocorrelation\nNone"
   },
   {
     "objectID": "course-materials/week8.html#assignment-reminders",
@@ -263,14 +263,14 @@
     "href": "course-materials/week2.html",
     "title": "Regression",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLinear regression\nIMS\n\n\nLab\nRockfish survey gaps\nIMS\n\n\nLecture 2\nMultiple regression\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLinear regression\nIMS Ch 7\n\n\nLab\nRockfish survey gaps\nSantora et al. (2021) Nature Communications (optional)\n\n\nLecture 2\nMultiple regression\nIMS Ch 8"
   },
   {
     "objectID": "course-materials/week2.html#lecture-materials",
     "href": "course-materials/week2.html#lecture-materials",
     "title": "Regression",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLinear regression\nIMS\n\n\nLab\nRockfish survey gaps\nIMS\n\n\nLecture 2\nMultiple regression\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLinear regression\nIMS Ch 7\n\n\nLab\nRockfish survey gaps\nSantora et al. (2021) Nature Communications (optional)\n\n\nLecture 2\nMultiple regression\nIMS Ch 8"
   },
   {
     "objectID": "course-materials/week2.html#assignment-reminders",
@@ -284,14 +284,14 @@
     "href": "course-materials/week7.html",
     "title": "Logistic regression",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLogistic regression\nIMS\n\n\nLab\nNo class\nNone\n\n\nLecture 2\nColor of drinking water\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLogistic regression\nIMS Ch 9, 26\n\n\nLab\nNo class\nNone\n\n\nLecture 2\nColor of drinking water\nNone"
   },
   {
     "objectID": "course-materials/week7.html#lecture-materials",
     "href": "course-materials/week7.html#lecture-materials",
     "title": "Logistic regression",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLogistic regression\nIMS\n\n\nLab\nNo class\nNone\n\n\nLecture 2\nColor of drinking water\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nLogistic regression\nIMS Ch 9, 26\n\n\nLab\nNo class\nNone\n\n\nLecture 2\nColor of drinking water\nNone"
   },
   {
     "objectID": "course-materials/week7.html#assignment-reminders",
@@ -305,14 +305,14 @@
     "href": "course-materials/week4.html",
     "title": "Introduction to Inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nForks, pipes, and colliders\nIMS\n\n\nLab\nSimpson’s paradox\nIMS\n\n\nLecture 2\nPermutation and bootstrapping\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nForks, pipes, and colliders\nNone\n\n\nLab\nMonty Hall and Simpson’s paradoxes\nNone\n\n\nLecture 2\nPermutation and bootstrapping\nIMS Ch 11-12"
   },
   {
     "objectID": "course-materials/week4.html#lecture-materials",
     "href": "course-materials/week4.html#lecture-materials",
     "title": "Introduction to Inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nForks, pipes, and colliders\nIMS\n\n\nLab\nSimpson’s paradox\nIMS\n\n\nLecture 2\nPermutation and bootstrapping\nIMS"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nForks, pipes, and colliders\nNone\n\n\nLab\nMonty Hall and Simpson’s paradoxes\nNone\n\n\nLecture 2\nPermutation and bootstrapping\nIMS Ch 11-12"
   },
   {
     "objectID": "course-materials/week4.html#assignment-reminders",

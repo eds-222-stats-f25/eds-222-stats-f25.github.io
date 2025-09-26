@@ -8,9 +8,9 @@ description: "Theme: Non-normal Data"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Poisson regression | IMS |
-| Lab | California wildfire occurrence | None |
-| Lecture 2 | Spatial and temporal autocorrelation | None |
+| Lecture 1 | Poisson regression | *None* |
+| Lab | California wildfire occurrence | *None* |
+| Lecture 2 | Spatial and temporal autocorrelation | *None* |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}

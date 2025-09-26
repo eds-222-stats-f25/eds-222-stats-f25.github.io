@@ -8,9 +8,9 @@ description: "Theme: Exploring Uncertainty"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Interactions | IMS |
-| Lab | Midterm review | IMS |
-| Lecture 2 | Midterm 1 | IMS |
+| Lecture 1 | Interactions | *None* |
+| Lab | Midterm review | *None* |
+| Lecture 2 | Midterm 1 | *None* |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
