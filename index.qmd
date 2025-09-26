@@ -10,6 +10,10 @@ toc: false
 ![](images/butterfly-net-sampling.png){width="80%"}
 :::
 
+::: {.center-text .gray-text}
+*Artwork by [Allison Payne](https://allisonpayne.github.io/)* 
+:::
+
 ## Course Description
 
 Statistics is the science of collecting, manipulating, and analyzing empirical data. In this class, we will learn the statistical fundamentals that will enable us to draw conclusions about the environment and its interaction with social and economic systems. We will cover fundamental statistical concepts and tools, and then apply and expand upon those tools to learn some temporal and spatial statistical methods that are particularly helpful in environmental data science. Welcome!

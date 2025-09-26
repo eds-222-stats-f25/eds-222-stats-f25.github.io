@@ -46,7 +46,7 @@ website:
             url: https://github.com/eds-222-stats-f25/eds-222-stats-f25.github.io/issues
   page-footer:
     background: dark
-    right: This website is built with [{{< fa brands github title="the github octocat logo" >}}](https://github.com/UCSB-MEDS/EDS-website-template) and [Quarto](https://quarto.org/)
+    right: This website is built with [{{< fa brands github title="the github octocat logo" >}}](https://github.com/eds-222-stats-f25/eds-222-stats-f25.github.io/) and [Quarto](https://quarto.org/)
     left: This work is licensed under CC-BY
 
 format:
