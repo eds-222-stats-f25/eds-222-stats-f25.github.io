@@ -8,8 +8,8 @@ description: "Theme: Exploring Uncertainty"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Populations, samples, and statistics | [IMS Ch 1-2](https://openintrostat.github.io/ims/data-hello.html) |
-| Lab | Exploratory data analysis | [IMS Ch 4-5](https://openintrostat.github.io/ims/explore-categorical.html) |
+| Lecture 1 | [Populations, samples, and parameters](lecture-slides/lecture1-1.pdf){target="_blank"} | [IMS Ch 1-2](https://openintrostat.github.io/ims/data-hello.html){target="_blank"} |
+| Lab | Exploratory data analysis | [IMS Ch 4-5](https://openintrostat.github.io/ims/explore-categorical.html){target="_blank"} |
 | Lecture 2 | Random variables and distribution functions | *None* |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 

@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "!course-materials/quizzes/*"
 
 website:
   title: "EDS 222: Statistics for Environmental Data Science"
