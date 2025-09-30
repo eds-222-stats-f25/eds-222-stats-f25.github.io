@@ -59,5 +59,8 @@ format:
     toc: true
     title-block-banner: true
 
+resources:
+  - course-materials/labs/
+
 
 
