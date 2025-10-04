@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Theme: Exploring Uncertainty">
 
-<title>EDS 222: Statistics for Environmental Data Science – Regression</title>
+<title>EDS 222: Statistics for Environmental Data Science – Lab 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,28 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../images/bren-hex.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/bren-hex.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -81,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">EDS 222: Statistics for Environmental Data Science</span>
     </a>
   </div>
@@ -92,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">home</span></a>
   </li>  
   <li class="nav-item">
@@ -105,53 +167,53 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-course-materials">    
         <li>
-    <a class="dropdown-item" href="../course-materials/week1.html">
+    <a class="dropdown-item" href="../../course-materials/week1.html">
  <span class="dropdown-text">week 1 (9/29-10/3)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week2.html">
+    <a class="dropdown-item" href="../../course-materials/week2.html">
  <span class="dropdown-text">week 2 (10/6-10/10)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week3.html">
+    <a class="dropdown-item" href="../../course-materials/week3.html">
  <span class="dropdown-text">week 3 (10/13-10/17)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week4.html">
+    <a class="dropdown-item" href="../../course-materials/week4.html">
  <span class="dropdown-text">week 4 (10/20-10/24)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week5.html">
+    <a class="dropdown-item" href="../../course-materials/week5.html">
  <span class="dropdown-text">week 5 (10/27-10/31)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week6.html">
+    <a class="dropdown-item" href="../../course-materials/week6.html">
  <span class="dropdown-text">week 6 (11/3-11/7)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week7.html">
+    <a class="dropdown-item" href="../../course-materials/week7.html">
  <span class="dropdown-text">week 7 (11/10-11/14)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week8.html">
+    <a class="dropdown-item" href="../../course-materials/week8.html">
  <span class="dropdown-text">week 8 (11/17-11/21)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week9.html">
+    <a class="dropdown-item" href="../../course-materials/week9.html">
  <span class="dropdown-text">week 9 (11/24-11/28)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../course-materials/week10.html">
+    <a class="dropdown-item" href="../../course-materials/week10.html">
  <span class="dropdown-text">week 10 (12/1-12/5)</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../homework.html"> 
+    <a class="nav-link" href="../../homework.html"> 
 <span class="menu-text">homework</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../final-project.html"> 
+    <a class="nav-link" href="../../final-project.html"> 
 <span class="menu-text">final project</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -182,14 +244,9 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">Regression</h1>
-            <p class="subtitle lead">Week 2 (October 6 - 10)</p>
-                  <div>
-        <div class="description">
-          Theme: Exploring Uncertainty
-        </div>
-      </div>
-                </div>
+      <h1 class="title">Lab 2</h1>
+            <p class="subtitle lead">Rockfish survey gaps</p>
+                      </div>
   </div>
     
   
@@ -209,10 +266,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lecture-materials" id="toc-lecture-materials" class="nav-link active" data-scroll-target="#lecture-materials"><i class="fa-solid fa-person-chalkboard" title="a person pointing at a chalkboard" aria-label="person-chalkboard"></i> Lecture Materials</a></li>
-  <li><a href="#assignment-reminders" id="toc-assignment-reminders" class="nav-link" data-scroll-target="#assignment-reminders"><i class="fa-solid fa-pencil" title="pencil" aria-label="pencil"></i> Assignment Reminders</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
+  <li><a href="#storms-and-floods" id="toc-storms-and-floods" class="nav-link" data-scroll-target="#storms-and-floods">Storms and floods</a>
+  <ul class="collapse">
+  <li><a href="#fit-model" id="toc-fit-model" class="nav-link" data-scroll-target="#fit-model">Fit model</a></li>
+  </ul></li>
+  <li><a href="#interpret-model" id="toc-interpret-model" class="nav-link" data-scroll-target="#interpret-model">Interpret model</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#explore-the-data" id="toc-explore-the-data" class="nav-link" data-scroll-target="#explore-the-data">Explore the data</a></li>
+  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">Fit the model</a></li>
   </ul>
-</nav>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="lab2.qmd"><i class="bi bi-link-45deg"></i>Download Source</a></li><li><a href="data/la_storm.csv"><i class="bi bi-link-45deg"></i>LA Storm Data</a></li><li><a href="data/rreas.csv"><i class="bi bi-link-45deg"></i>RREAS Data</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
@@ -221,64 +286,87 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="lecture-materials" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-materials"><i class="fa-solid fa-person-chalkboard" title="a person pointing at a chalkboard" aria-label="person-chalkboard"></i> Lecture Materials</h2>
-<table class="table-hover table-bordered caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 50%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Session</th>
-<th>Topic</th>
-<th>Reading</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Lecture 1</td>
-<td><a href="lecture-slides/lecture2-1.pdf" target="_blank">Linear regression</a></td>
-<td><a href="https://openintrostat.github.io/ims/model-slr.html" target="_blank">IMS Ch 7</a></td>
-</tr>
-<tr class="even">
-<td>Lab</td>
-<td>Rockfish survey gaps</td>
-<td><a href="https://doi.org/10.1038/s41467-021-26484-5" target="_blank">Santora et al.&nbsp;(2021) <em>Nature Communications</em></a> (optional)</td>
-</tr>
-<tr class="odd">
-<td>Lecture 2</td>
-<td>Multiple regression</td>
-<td><a href="https://openintrostat.github.io/ims/model-mlr.html" target="_blank">IMS Ch 8</a></td>
-</tr>
-</tbody>
-</table>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning objectives</h2>
+<p>In today’s lab you will…</p>
+<ol type="1">
+<li><strong>Fit</strong> a linear model to real world data</li>
+<li><strong>Interpret</strong> model coefficients and quality of fit</li>
+<li><strong>Simulate</strong> data from an alternative data generating process</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="assignment-reminders" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-reminders"><i class="fa-solid fa-pencil" title="pencil" aria-label="pencil"></i> Assignment Reminders</h2>
-<table class="table-hover table-bordered caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Assignment Type</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Homework</td>
-<td>Homework 1 posted</td>
-</tr>
-<tr class="even">
-<td>Final project</td>
-<td>Choose data and question</td>
-</tr>
-</tbody>
-</table>
+<section id="storms-and-floods" class="level2">
+<h2 class="anchored" data-anchor-id="storms-and-floods">Storms and floods</h2>
+<p>We’ll begin with an example of the relationship betwen precipitation and flooding during storms in LA. Save the <em>LA Storm Data</em> CSV to your <code>data/</code> folder and use it to fill in the following code chunk. Each row in the CSV file contains data from a storm in LA during the last fifteen years. <code>gage_ht</code> is the height of the Los Angeles River at the Sepulveda Dam (in feet) and <code>precip_wk_in</code> is the total precipitation measured during the previous week at the Hollywood Burbank Airport. You can find data like these through USGS and NCEI, respectively.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the CSV file into a data frame</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot of the gage height and precipitation data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q1: Which variables did you choose for the x- and y-axis? What does this imply about the <em>data generating process</em>?</strong></p>
+<p>In Quarto documents, we can add statistical notation using LaTeX. We’ll fill in the equation below to describe the model.</p>
+<p><span class="math display">\[
+\begin{align}
+??? &amp;\sim Normal(???, ???) \\
+??? &amp;= ??? + ???
+\end{align}
+\]</span></p>
+<section id="fit-model" class="level3">
+<h3 class="anchored" data-anchor-id="fit-model">Fit model</h3>
+<p>The <code>lm()</code> function fits a linear regression model to data. It has two important parameters: the formula defining the model, and the data frame containing the data.</p>
+<p>Once you’ve fit the model, use <code>summary()</code> to see the details, including the coefficients and <span class="math inline">\(R^2\)</span> value. <span class="math inline">\(\hat \sigma\)</span> is in there too, but doesn’t print by default. Assign the result of <code>summary()</code> to a variable called <code>storm_summ</code> and try to find the standard deviation from there (hint: it’s an element in that variable).</p>
+<p><strong>Q2: What are the estimates for</strong> <span class="math inline">\(\hat \beta_0, \hat \beta_1, \hat \sigma\)</span> <strong>?</strong></p>
+</section>
+</section>
+<section id="interpret-model" class="level2">
+<h2 class="anchored" data-anchor-id="interpret-model">Interpret model</h2>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>The Rockfish Recruitment and Ecosystem Assessment Survey (RREAS) is a long-running survey of juvenile rockfish, their physical environment, and their predators along the US west coast. The survey is vitally important for understanding the population dynamics of economically and culturally important species, such as bocaccio. RREAS data inform fishery management decisions to protect threatened populations while supporting California’s coastal economy. For more information about RREAS, see their <a href="https://arcg.is/1CmKau0">Story Map</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-4097019708.png" class="img-fluid figure-img" width="400"></p>
+<figcaption>The US West Coast Groundfish Fishery harvested 1 million pounds of bocaccio in 2023, valued at $650k. Source: NOAA Fisheries</figcaption>
+</figure>
+</div>
+<p>The RREAS has run almost every spring for over 40 years. The “almost” qualifier is necessary because the COVID-19 pandemic greatly reduced survey effort in 2020. NOAA scientists used linear regression to fill the gap in their dataset with a proxy measurement: diets of common murres.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-1069203086.png" class="img-fluid figure-img" width="400"></p>
+<figcaption>A conceptual model of the dynamics governing murres, their prey, and the environment.</figcaption>
+</figure>
+</div>
+<p>The common murre is a seabird that breeds in large numbers off the coast of California. In spring, pairs of murres raise one chick by bringing it juvenile fish, including rockfish, anchovy, and salmon. The composition of common murre diets on the Farallon Islands (~30 miles west of San Francisco) has been recorded by biologists with Point Blue Conservation since the 1970s.</p>
+<p>In this lab, you’ll use rockfish and anchovy abundance indices created by NOAA together with common murre diet data collected by Point Blue to assess how common murres can help fill gaps in the long-term survey.</p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="explore-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-data">Explore the data</h2>
+<p>Read the data from the lab 2 CSV file and create a scatter plot relating fish abundance indices to common murre diet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rreas_murres <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/lab2.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q1: What predictor and response variables did you choose?</strong></p>
+<p><strong>Q2: What do your choice of variables imply about the <em>data generating process?</em></strong></p>
+</section>
+<section id="fit-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-model">Fit the model</h2>
+<p>Fit a model that predicts the RREAS rockfish abundance index from the fraction of rockfish in common murre diets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rockfish_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(??? <span class="sc">~</span> ???, <span class="at">data =</span> ???)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The estimated coefficients (<span class="math inline">\(\hat \beta_0, \hat \beta_1\)</span>) and standard deviation (<span class="math inline">\(\hat \sigma\)</span>) can be extracted from the summary of the model.</p>
 
 
 </section>

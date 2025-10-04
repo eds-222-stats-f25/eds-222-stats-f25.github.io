@@ -8,9 +8,9 @@ description: "Theme: Exploring Uncertainty"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Linear regression | [IMS Ch 7](https://openintrostat.github.io/ims/model-slr.html) |
-| Lab | Rockfish survey gaps | [Santora et al. (2021) *Nature Communications*](https://doi.org/10.1038/s41467-021-26484-5) (optional) |
-| Lecture 2 | Multiple regression | [IMS Ch 8](https://openintrostat.github.io/ims/model-mlr.html) |
+| Lecture 1 | [Linear regression](lecture-slides/lecture2-1.pdf){target="_blank"} | [IMS Ch 7](https://openintrostat.github.io/ims/model-slr.html){target="_blank"} |
+| Lab | Rockfish survey gaps | [Santora et al. (2021) *Nature Communications*](https://doi.org/10.1038/s41467-021-26484-5){target="_blank"} (optional) |
+| Lecture 2 | Multiple regression | [IMS Ch 8](https://openintrostat.github.io/ims/model-mlr.html){target="_blank"} |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}

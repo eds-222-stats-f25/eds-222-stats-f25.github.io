@@ -1,0 +1,138 @@
+---
+title: "Lab 2"
+subtitle: "Rockfish survey gaps"
+toc: true
+editor: visual
+format:
+  html:
+    other-links:
+      - text: Download Source
+        href: lab2.qmd
+      - text: LA Storm Data
+        href: data/la_storm.csv
+      - text: RREAS Data
+        href: data/rreas.csv
+editor_options: 
+  chunk_output_type: console
+execute: 
+  eval: false
+---
+
+## Learning objectives
+
+In today's lab you will...
+
+1.  **Fit** a linear model to real world data
+2.  **Interpret** model coefficients and quality of fit
+3.  **Simulate** data from an alternative data generating process
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+theme_set(theme_bw(18))
+
+```
+
+## Storms and floods
+
+We'll begin with an example of the relationship betwen precipitation and flooding during storms in LA. Save the *LA Storm Data* CSV to your `data/` folder and use it to fill in the following code chunk. Each row in the CSV file contains data from a storm in LA during the last fifteen years. `gage_ht` is the height of the Los Angeles River at the Sepulveda Dam (in feet) and `precip_wk_in` is the total precipitation measured during the previous week at the Hollywood Burbank Airport. You can find data like these through USGS and NCEI, respectively.
+
+```{r}
+#| label: q1
+
+# Read the CSV file into a data frame
+
+# Create a plot of the gage height and precipitation data
+
+```
+
+**Q1: Which variables did you choose for the x- and y-axis? What does this imply about the *data generating process*?**
+
+In Quarto documents, we can add statistical notation using LaTeX. We'll fill in the equation below to describe the model.
+
+$$
+\begin{align}
+??? &\sim Normal(???, ???) \\
+??? &= ??? + ???
+\end{align}
+$$
+
+### Fit model
+
+The `lm()` function fits a linear regression model to data. It has two important parameters: the formula defining the model, and the data frame containing the data.
+
+```{r}
+#| label: fit-model
+
+
+
+```
+
+Once you've fit the model, use `summary()` to see the details, including the coefficients and $R^2$ value. $\hat \sigma$ is in there too, but doesn't print by default. Assign the result of `summary()` to a variable called `storm_summ` and try to find the standard deviation from there (hint: it's an element in that variable).
+
+```{r}
+#| label: summarize-model
+
+
+
+```
+
+**Q2: What are the estimates for** $\hat \beta_0, \hat \beta_1, \hat \sigma$ **?**
+
+## Interpret model
+
+## Background
+
+The Rockfish Recruitment and Ecosystem Assessment Survey (RREAS) is a long-running survey of juvenile rockfish, their physical environment, and their predators along the US west coast. The survey is vitally important for understanding the population dynamics of economically and culturally important species, such as bocaccio. RREAS data inform fishery management decisions to protect threatened populations while supporting California's coastal economy. For more information about RREAS, see their [Story Map](https://arcg.is/1CmKau0).
+
+![The US West Coast Groundfish Fishery harvested 1 million pounds of bocaccio in 2023, valued at \$650k. Source: NOAA Fisheries](images/clipboard-4097019708.png){width="400"}
+
+The RREAS has run almost every spring for over 40 years. The "almost" qualifier is necessary because the COVID-19 pandemic greatly reduced survey effort in 2020. NOAA scientists used linear regression to fill the gap in their dataset with a proxy measurement: diets of common murres.
+
+![A conceptual model of the dynamics governing murres, their prey, and the environment.](images/clipboard-1069203086.png){width="400"}
+
+The common murre is a seabird that breeds in large numbers off the coast of California. In spring, pairs of murres raise one chick by bringing it juvenile fish, including rockfish, anchovy, and salmon. The composition of common murre diets on the Farallon Islands (\~30 miles west of San Francisco) has been recorded by biologists with Point Blue Conservation since the 1970s.
+
+In this lab, you'll use rockfish and anchovy abundance indices created by NOAA together with common murre diet data collected by Point Blue to assess how common murres can help fill gaps in the long-term survey.
+
+## Setup
+
+```{r}
+library(tidyverse)
+theme_set(theme_bw(18))
+
+```
+
+## Explore the data
+
+Read the data from the lab 2 CSV file and create a scatter plot relating fish abundance indices to common murre diet.
+
+```{r}
+
+rreas_murres <- read_csv("data/lab2.csv")
+
+```
+
+**Q1: What predictor and response variables did you choose?**
+
+**Q2: What do your choice of variables imply about the *data generating process?***
+
+## Fit the model
+
+Fit a model that predicts the RREAS rockfish abundance index from the fraction of rockfish in common murre diets.
+
+```{r}
+#| eval: false
+
+rockfish_mod <- lm(??? ~ ???, data = ???)
+
+```
+
+The estimated coefficients ($\hat \beta_0, \hat \beta_1$) and standard deviation ($\hat \sigma$) can be extracted from the summary of the model.
+
+```{r}
+
+
+
+```
