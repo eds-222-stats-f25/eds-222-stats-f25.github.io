@@ -270,12 +270,15 @@ window.Quarto = {
   <li><a href="#storms-and-floods" id="toc-storms-and-floods" class="nav-link" data-scroll-target="#storms-and-floods">Storms and floods</a>
   <ul class="collapse">
   <li><a href="#fit-model" id="toc-fit-model" class="nav-link" data-scroll-target="#fit-model">Fit model</a></li>
-  </ul></li>
   <li><a href="#interpret-model" id="toc-interpret-model" class="nav-link" data-scroll-target="#interpret-model">Interpret model</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  </ul></li>
+  <li><a href="#rockfish-survey-gaps" id="toc-rockfish-survey-gaps" class="nav-link" data-scroll-target="#rockfish-survey-gaps">Rockfish survey gaps</a>
+  <ul class="collapse">
   <li><a href="#explore-the-data" id="toc-explore-the-data" class="nav-link" data-scroll-target="#explore-the-data">Explore the data</a></li>
   <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">Fit the model</a></li>
+  <li><a href="#interpret-the-model" id="toc-interpret-the-model" class="nav-link" data-scroll-target="#interpret-the-model">Interpret the model</a></li>
+  </ul></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="lab2.qmd"><i class="bi bi-link-45deg"></i>Download Source</a></li><li><a href="data/la_storm.csv"><i class="bi bi-link-45deg"></i>LA Storm Data</a></li><li><a href="data/rreas.csv"><i class="bi bi-link-45deg"></i>RREAS Data</a></li></ul></div></nav>
     </div>
@@ -321,12 +324,34 @@ window.Quarto = {
 <p>Once you’ve fit the model, use <code>summary()</code> to see the details, including the coefficients and <span class="math inline">\(R^2\)</span> value. <span class="math inline">\(\hat \sigma\)</span> is in there too, but doesn’t print by default. Assign the result of <code>summary()</code> to a variable called <code>storm_summ</code> and try to find the standard deviation from there (hint: it’s an element in that variable).</p>
 <p><strong>Q2: What are the estimates for</strong> <span class="math inline">\(\hat \beta_0, \hat \beta_1, \hat \sigma\)</span> <strong>?</strong></p>
 </section>
+<section id="interpret-model" class="level3">
+<h3 class="anchored" data-anchor-id="interpret-model">Interpret model</h3>
+<p><strong>Q3: In plain language, describe how you’d interpret</strong> <span class="math inline">\(\beta_0\)</span> <strong>and</strong> <span class="math inline">\(\beta_1\)</span><strong>. What do they represent?</strong></p>
+<p>Let’s also interpret <span class="math inline">\(R^2\)</span>, the measure of model fit. Recall <span class="math inline">\(R^2\)</span> describes the amount of variance <em>explained by the model</em>. In other words, how much variance did we “explain away” using the model’s prediction line. In equations, it looks like this.</p>
+<p><span class="math display">\[
+\begin{align}
+SST &amp;= \sum_i (y_i - \bar y)^2 \\
+SSE &amp;= \sum_i (y_i - \hat y_i)^2 \\
+R^2 &amp;= \frac{SST-SSE}{SST}
+\end{align}
+\]</span></p>
+<p>We can get <span class="math inline">\(R^2\)</span> directly from the model summary in R, but it’s helpful for your learning to do it a couple times directly, too. Calculate <span class="math inline">\(SST\)</span>, <span class="math inline">\(SSE\)</span>, and <span class="math inline">\(R^2\)</span> arithmetically in the code chunk below. You can use the <code>coef()</code> function to get the model coefficient estimates, but don’t use <code>residuals()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>y_bar <span class="ot">&lt;-</span> ???</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> ???</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>SST <span class="ot">&lt;-</span> ???</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>SSE <span class="ot">&lt;-</span> ???</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> ???</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q4: What’s the difference between</strong> <span class="math inline">\(y\)</span><strong>,</strong> <span class="math inline">\(\bar y\)</span><strong>, and</strong> <span class="math inline">\(\hat y\)</span><strong>?</strong></p>
+<p><strong>Q5: What does the</strong> <span class="math inline">\(R^2\)</span> <strong>value tell you about the quality of the model (in plain language)?</strong></p>
+<p>Recall that the purpose of a model is to <em>explain variance</em>.</p>
+<p><strong>Q6: What’s the estimated value of</strong> <span class="math inline">\(\hat \sigma\)</span> <strong>for the model? What’s the value of</strong> <span class="math inline">\(\sigma\)</span> <strong>for the response variable itself? Say you needed to predict Los Angeles River gage height following a storm - what does the relationship between these two numbers say about your ability to make that prediction accurately?</strong></p>
 </section>
-<section id="interpret-model" class="level2">
-<h2 class="anchored" data-anchor-id="interpret-model">Interpret model</h2>
 </section>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
+<section id="rockfish-survey-gaps" class="level2">
+<h2 class="anchored" data-anchor-id="rockfish-survey-gaps">Rockfish survey gaps</h2>
+<p>In the rest of this lab, you’ll apply what you learned in the previous example to fill gaps in a marine ecosystem survey.</p>
 <p>The Rockfish Recruitment and Ecosystem Assessment Survey (RREAS) is a long-running survey of juvenile rockfish, their physical environment, and their predators along the US west coast. The survey is vitally important for understanding the population dynamics of economically and culturally important species, such as bocaccio. RREAS data inform fishery management decisions to protect threatened populations while supporting California’s coastal economy. For more information about RREAS, see their <a href="https://arcg.is/1CmKau0">Story Map</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -342,31 +367,37 @@ window.Quarto = {
 </figure>
 </div>
 <p>The common murre is a seabird that breeds in large numbers off the coast of California. In spring, pairs of murres raise one chick by bringing it juvenile fish, including rockfish, anchovy, and salmon. The composition of common murre diets on the Farallon Islands (~30 miles west of San Francisco) has been recorded by biologists with Point Blue Conservation since the 1970s.</p>
-<p>In this lab, you’ll use rockfish and anchovy abundance indices created by NOAA together with common murre diet data collected by Point Blue to assess how common murres can help fill gaps in the long-term survey.</p>
-</section>
-<section id="setup" class="level2">
-<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<section id="explore-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="explore-the-data">Explore the data</h3>
+<p>Read the data from the rreas.csv file and create a scatter plot relating fish abundance indices to common murre diet.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="dv">18</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rreas_murres <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rreas.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Q6: Which variables did you choose for the x- and y-axis? What does this mean for the purpose of your model?</strong></p>
 </section>
-<section id="explore-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="explore-the-data">Explore the data</h2>
-<p>Read the data from the lab 2 CSV file and create a scatter plot relating fish abundance indices to common murre diet.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rreas_murres <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/lab2.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Q1: What predictor and response variables did you choose?</strong></p>
-<p><strong>Q2: What do your choice of variables imply about the <em>data generating process?</em></strong></p>
-</section>
-<section id="fit-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="fit-the-model">Fit the model</h2>
+<section id="fit-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-model">Fit the model</h3>
 <p>Fit a model that predicts the RREAS rockfish abundance index from the fraction of rockfish in common murre diets.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rockfish_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(??? <span class="sc">~</span> ???, <span class="at">data =</span> ???)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The estimated coefficients (<span class="math inline">\(\hat \beta_0, \hat \beta_1\)</span>) and standard deviation (<span class="math inline">\(\hat \sigma\)</span>) can be extracted from the summary of the model.</p>
+</section>
+<section id="interpret-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="interpret-the-model">Interpret the model</h3>
+<p>Find the <span class="math inline">\(R^2\)</span> value for your model.</p>
+<p><strong>Q7: What does the R2 value tell you about the utility of your model for filling in the survey gap?</strong></p>
+<p>Extract the estimated coefficients (<span class="math inline">\(\hat \beta_0, \hat \beta_1\)</span>) and standard deviation (<span class="math inline">\(\hat \sigma\)</span>) from the model.</p>
+<p><strong>Q8: In plain language, what do the coefficients and standard deviation of the model represent?</strong></p>
+<p>Say it’s 2020 and the RREAS has largely been canceled. You ask Point Blue to share their common murre diet data with you and they say it was 32.8% juvenile rockfish. Estimate the predicted value of the juvenile rockfish abundance index.</p>
+<p><strong>Q9: What did you predict the juvenile rockfish abundance index was in 2020?</strong></p>
+<p><strong>Q10: Your prediction is the <em>most likely</em> outcome, but the actual index won’t take that value exactly. How would you estimate an interval that you could confidently say probably contains the actual index?</strong></p>
+</section>
+</section>
+<section id="recap" class="level2">
+<h2 class="anchored" data-anchor-id="recap">Recap</h2>
+<p>In this lab, you fit linear regression models to one predictor and one response variable. You used statistical notation to describe the model, which makes two things unambiguous.</p>
+<ol type="1">
+<li>It shows the relationship between the predictor, model coefficients, and the expected value of the response for a given value of the predictor.</li>
+<li>It says the observed response values are <em>normally distributed</em> around the expected value, with a standard deviation of <span class="math inline">\(\sigma\)</span>.</li>
+</ol>
+<p>In future weeks, we’ll build on this foundation to make more complicated models. You’ll add additional predictors, transform parameters to introduce non-linearity, and use non-normal random variables to model other types of responses.</p>
 
 
 </section>
