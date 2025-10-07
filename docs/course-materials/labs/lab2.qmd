@@ -23,8 +23,8 @@ execute:
 In today's lab you will...
 
 1.  **Fit** a linear model to real world data
-2.  **Interpret** model coefficients and quality of fit
-3.  **Simulate** data from an alternative data generating process
+2.  **Interpret** model coefficients
+3.  **Simulate** data according to model assumptions and recover parameters
 
 ```{r}
 #| label: setup
@@ -63,7 +63,7 @@ $$
 The `lm()` function fits a linear regression model to data. It has two important parameters: the formula defining the model, and the data frame containing the data.
 
 ```{r}
-#| label: fit-model
+#| label: fit-storm-model
 
 
 
@@ -72,7 +72,7 @@ The `lm()` function fits a linear regression model to data. It has two important
 Once you've fit the model, use `summary()` to see the details, including the coefficients and $R^2$ value. $\hat \sigma$ is in there too, but doesn't print by default. Assign the result of `summary()` to a variable called `storm_summ` and try to find the standard deviation from there (hint: it's an element in that variable).
 
 ```{r}
-#| label: summarize-model
+#| label: summarize-storm-model
 
 
 
@@ -115,9 +115,98 @@ Recall that the purpose of a model is to *explain variance*.
 
 **Q6: What's the estimated value of** $\hat \sigma$ **for the model? What's the value of** $\sigma$ **for the response variable itself? Say you needed to predict Los Angeles River gage height following a storm - what does the relationship between these two numbers say about your ability to make that prediction accurately?**
 
+## Simulating data from a model
+
+Simulating data from a model is a super power for your learning! This is a great tool for unambiguously testing your understanding. Here's the basic process:
+
+1.  Read the model description in statistical notation
+2.  Choose a set of parameters and predictor variable(s) for your simulation
+3.  Use a random variable to generate a response, based on your parameters and predictor(s)
+4.  Fit a model to your simulated data
+5.  Check if your model's parameter estimates match what you chose
+
+Mastering this process will give you a massive boost in learning new statistical tools!
+
+Let's do it for linear regression.
+
+### 1. Read the model description
+
+Here's the description of a linear regression model in statistical notation.
+
+$$
+\begin{align}
+y &\sim Normal(\mu, \sigma) \\
+\mu &= \beta_0 + \beta_1 x
+\end{align}
+$$
+
+### 2. Choose parameters, predictor(s)
+
+We have three parameters in our model: $\beta_0$, $\beta_1$, and $\sigma$. You can choose any *valid* value for them.
+
+```{r}
+#| label: choose-params
+
+beta_0 <- ???
+beta_1 <- ???
+sigma <- ???
+
+```
+
+Choose any *valid* value for x, too. In linear regression, the predictor can take any real value. Let's choose 100 numbers evenly spaced between 0 and 10. You could generate these randomly, too, but you don't *have* to.
+
+```{r}
+#| label: choose-pred
+
+x <- ???
+
+```
+
+### 3. Generate response
+
+Check out our model description - it tells us what to do next. $\mu$ is calculated directly from $\beta_0$, $\beta_1$, and $x$, which we just chose. $y$ *is distributed as* a normal variable with mean $\mu$ (which we calculate) and standard deviation $\sigma$ (which we chose). *Is distributed as* is our clue we need to create a random variable.
+
+```{r}
+#| label: generate-response
+
+mu <- ???
+y <- rnorm(n = ???, mean = ???, sd = ???)
+
+```
+
+### 4. Fit the model
+
+As we did above.
+
+```{r}
+#| label: fit-model
+
+sim_dat <- tibble(???)
+sim_mod <- lm(??? ~ ???, data = sim_dat)
+
+```
+
+### 5. Check your model
+
+Do the model parameter estimates match our chosen simulation parameters?
+
+```{r}
+#| label: check-model
+
+mod_summ <- summary(???)
+beta_0_hat <- ???
+beta_1_hat <- ???
+sigma_hat <- ???
+
+```
+
+Try changing your chosen parameters for your model and see if you can recover them. As long as you keep your simulated data large enough (n \> 100) you should get good results.
+
+As we start to use more complicated models, this procedure will become invaluable. The key thing about it is you can check your work: if you're consistently getting the wrong estimates for your parameters then you know you have an error in your understanding. That's what office hours are for!
+
 ## Rockfish survey gaps
 
-In the rest of this lab, you'll apply what you learned in the previous example to fill gaps in a marine ecosystem survey.
+In the rest of this lab, you'll apply what you learned in the previous examples to fill gaps in a marine ecosystem survey.
 
 The Rockfish Recruitment and Ecosystem Assessment Survey (RREAS) is a long-running survey of juvenile rockfish, their physical environment, and their predators along the US west coast. The survey is vitally important for understanding the population dynamics of economically and culturally important species, such as bocaccio. RREAS data inform fishery management decisions to protect threatened populations while supporting California's coastal economy. For more information about RREAS, see their [Story Map](https://arcg.is/1CmKau0).
 

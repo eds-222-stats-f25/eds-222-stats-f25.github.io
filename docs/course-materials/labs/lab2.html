@@ -272,10 +272,18 @@ window.Quarto = {
   <li><a href="#fit-model" id="toc-fit-model" class="nav-link" data-scroll-target="#fit-model">Fit model</a></li>
   <li><a href="#interpret-model" id="toc-interpret-model" class="nav-link" data-scroll-target="#interpret-model">Interpret model</a></li>
   </ul></li>
+  <li><a href="#simulating-data-from-a-model" id="toc-simulating-data-from-a-model" class="nav-link" data-scroll-target="#simulating-data-from-a-model">Simulating data from a model</a>
+  <ul class="collapse">
+  <li><a href="#read-the-model-description" id="toc-read-the-model-description" class="nav-link" data-scroll-target="#read-the-model-description">1. Read the model description</a></li>
+  <li><a href="#choose-parameters-predictors" id="toc-choose-parameters-predictors" class="nav-link" data-scroll-target="#choose-parameters-predictors">2. Choose parameters, predictor(s)</a></li>
+  <li><a href="#generate-response" id="toc-generate-response" class="nav-link" data-scroll-target="#generate-response">3. Generate response</a></li>
+  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">4. Fit the model</a></li>
+  <li><a href="#check-your-model" id="toc-check-your-model" class="nav-link" data-scroll-target="#check-your-model">5. Check your model</a></li>
+  </ul></li>
   <li><a href="#rockfish-survey-gaps" id="toc-rockfish-survey-gaps" class="nav-link" data-scroll-target="#rockfish-survey-gaps">Rockfish survey gaps</a>
   <ul class="collapse">
   <li><a href="#explore-the-data" id="toc-explore-the-data" class="nav-link" data-scroll-target="#explore-the-data">Explore the data</a></li>
-  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">Fit the model</a></li>
+  <li><a href="#fit-the-model-1" id="toc-fit-the-model-1" class="nav-link" data-scroll-target="#fit-the-model-1">Fit the model</a></li>
   <li><a href="#interpret-the-model" id="toc-interpret-the-model" class="nav-link" data-scroll-target="#interpret-the-model">Interpret the model</a></li>
   </ul></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
@@ -294,8 +302,8 @@ window.Quarto = {
 <p>In today’s lab you will…</p>
 <ol type="1">
 <li><strong>Fit</strong> a linear model to real world data</li>
-<li><strong>Interpret</strong> model coefficients and quality of fit</li>
-<li><strong>Simulate</strong> data from an alternative data generating process</li>
+<li><strong>Interpret</strong> model coefficients</li>
+<li><strong>Simulate</strong> data according to model assumptions and recover parameters</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -349,9 +357,73 @@ R^2 &amp;= \frac{SST-SSE}{SST}
 <p><strong>Q6: What’s the estimated value of</strong> <span class="math inline">\(\hat \sigma\)</span> <strong>for the model? What’s the value of</strong> <span class="math inline">\(\sigma\)</span> <strong>for the response variable itself? Say you needed to predict Los Angeles River gage height following a storm - what does the relationship between these two numbers say about your ability to make that prediction accurately?</strong></p>
 </section>
 </section>
+<section id="simulating-data-from-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-data-from-a-model">Simulating data from a model</h2>
+<p>Simulating data from a model is a super power for your learning! This is a great tool for unambiguously testing your understanding. Here’s the basic process:</p>
+<ol type="1">
+<li>Read the model description in statistical notation</li>
+<li>Choose a set of parameters and predictor variable(s) for your simulation</li>
+<li>Use a random variable to generate a response, based on your parameters and predictor(s)</li>
+<li>Fit a model to your simulated data</li>
+<li>Check if your model’s parameter estimates match what you chose</li>
+</ol>
+<p>Mastering this process will give you a massive boost in learning new statistical tools!</p>
+<p>Let’s do it for linear regression.</p>
+<section id="read-the-model-description" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-model-description">1. Read the model description</h3>
+<p>Here’s the description of a linear regression model in statistical notation.</p>
+<p><span class="math display">\[
+\begin{align}
+y &amp;\sim Normal(\mu, \sigma) \\
+\mu &amp;= \beta_0 + \beta_1 x
+\end{align}
+\]</span></p>
+</section>
+<section id="choose-parameters-predictors" class="level3">
+<h3 class="anchored" data-anchor-id="choose-parameters-predictors">2. Choose parameters, predictor(s)</h3>
+<p>We have three parameters in our model: <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\sigma\)</span>. You can choose any <em>valid</em> value for them.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>beta_0 <span class="ot">&lt;-</span> ???</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>beta_1 <span class="ot">&lt;-</span> ???</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> ???</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Choose any <em>valid</em> value for x, too. In linear regression, the predictor can take any real value. Let’s choose 100 numbers evenly spaced between 0 and 10. You could generate these randomly, too, but you don’t <em>have</em> to.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> ???</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="generate-response" class="level3">
+<h3 class="anchored" data-anchor-id="generate-response">3. Generate response</h3>
+<p>Check out our model description - it tells us what to do next. <span class="math inline">\(\mu\)</span> is calculated directly from <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(x\)</span>, which we just chose. <span class="math inline">\(y\)</span> <em>is distributed as</em> a normal variable with mean <span class="math inline">\(\mu\)</span> (which we calculate) and standard deviation <span class="math inline">\(\sigma\)</span> (which we chose). <em>Is distributed as</em> is our clue we need to create a random variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> ???</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> ???, <span class="at">mean =</span> ???, <span class="at">sd =</span> ???)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="fit-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-model">4. Fit the model</h3>
+<p>As we did above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sim_dat <span class="ot">&lt;-</span> <span class="fu">tibble</span>(???)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sim_mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(??? <span class="sc">~</span> ???, <span class="at">data =</span> sim_dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="check-your-model" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-model">5. Check your model</h3>
+<p>Do the model parameter estimates match our chosen simulation parameters?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mod_summ <span class="ot">&lt;-</span> <span class="fu">summary</span>(???)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>beta_0_hat <span class="ot">&lt;-</span> ???</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>beta_1_hat <span class="ot">&lt;-</span> ???</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> ???</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Try changing your chosen parameters for your model and see if you can recover them. As long as you keep your simulated data large enough (n &gt; 100) you should get good results.</p>
+<p>As we start to use more complicated models, this procedure will become invaluable. The key thing about it is you can check your work: if you’re consistently getting the wrong estimates for your parameters then you know you have an error in your understanding. That’s what office hours are for!</p>
+</section>
+</section>
 <section id="rockfish-survey-gaps" class="level2">
 <h2 class="anchored" data-anchor-id="rockfish-survey-gaps">Rockfish survey gaps</h2>
-<p>In the rest of this lab, you’ll apply what you learned in the previous example to fill gaps in a marine ecosystem survey.</p>
+<p>In the rest of this lab, you’ll apply what you learned in the previous examples to fill gaps in a marine ecosystem survey.</p>
 <p>The Rockfish Recruitment and Ecosystem Assessment Survey (RREAS) is a long-running survey of juvenile rockfish, their physical environment, and their predators along the US west coast. The survey is vitally important for understanding the population dynamics of economically and culturally important species, such as bocaccio. RREAS data inform fishery management decisions to protect threatened populations while supporting California’s coastal economy. For more information about RREAS, see their <a href="https://arcg.is/1CmKau0">Story Map</a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -371,12 +443,12 @@ R^2 &amp;= \frac{SST-SSE}{SST}
 <h3 class="anchored" data-anchor-id="explore-the-data">Explore the data</h3>
 <p>Read the data from the rreas.csv file and create a scatter plot relating fish abundance indices to common murre diet.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rreas_murres <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rreas.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rreas_murres <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/rreas.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Q6: Which variables did you choose for the x- and y-axis? What does this mean for the purpose of your model?</strong></p>
 </section>
-<section id="fit-the-model" class="level3">
-<h3 class="anchored" data-anchor-id="fit-the-model">Fit the model</h3>
+<section id="fit-the-model-1" class="level3">
+<h3 class="anchored" data-anchor-id="fit-the-model-1">Fit the model</h3>
 <p>Fit a model that predicts the RREAS rockfish abundance index from the fraction of rockfish in common murre diets.</p>
 </section>
 <section id="interpret-the-model" class="level3">
