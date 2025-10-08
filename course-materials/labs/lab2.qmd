@@ -36,7 +36,7 @@ theme_set(theme_bw(18))
 
 ## Storms and floods
 
-We'll begin with an example of the relationship betwen precipitation and flooding during storms in LA. Save the *LA Storm Data* CSV to your `data/` folder and use it to fill in the following code chunk. Each row in the CSV file contains data from a storm in LA during the last fifteen years. `gage_ht` is the height of the Los Angeles River at the Sepulveda Dam (in feet) and `precip_wk_in` is the total precipitation measured during the previous week at the Hollywood Burbank Airport. You can find data like these through USGS and NCEI, respectively.
+We'll begin with an example of the relationship between precipitation and flooding during storms in LA. Save the *LA Storm Data* CSV to your `data/` folder and use it to fill in the following code chunk. Each row in the CSV file contains data from a storm in LA during the last fifteen years. `gage_ht` is the height of the Los Angeles River at the Sepulveda Dam (in feet) and `precip_wk_in` is the total precipitation measured during the previous week at the Hollywood Burbank Airport. You can find data like these through USGS and NCEI, respectively.
 
 ```{r}
 #| label: q1
