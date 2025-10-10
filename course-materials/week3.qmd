@@ -8,7 +8,7 @@ description: "Theme: Exploring Uncertainty"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Interactions | *None* |
+| Lecture 1 | [Interactions](lecture-slides/lecture3-1.pdf){target="_blank"} | *None* |
 | Lab | Midterm review | *None* |
 | Lecture 2 | Midterm 1 | *None* |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 

@@ -79,6 +79,21 @@ summary(oak_mod1)
 oak_mod2 <- lm(growth_mm_yr ~ moisture_vwc + soil, data = oak_data)
 summary(oak_mod2)
 
+oak_pred <- expand_grid(moisture_vwc = range(oak_data$moisture_vwc),
+                        soil = unique(oak_data$soil)) %>% 
+  mutate(growth_mm_yr = predict(oak_mod2, .))
+ggplot(oak_data, aes(moisture_vwc, growth_mm_yr, color = soil)) +
+  geom_point(shape = 21, size = 2, stroke = 1) +
+  geom_line(data = oak_pred, linewidth = 1) +
+  scale_color_manual(values = c("cornflowerblue", "firebrick")) +
+  labs(x = "Moisture (VWC)",
+       y = "Growth (mm yr^-1)") +
+  expand_limits(x = 0, y = 0) +
+  theme(legend.position = "inside",
+        legend.position.inside = c(1, 0),
+        legend.justification = c(0.95, -0.05),
+        legend.title = element_blank())
+
 
 # Confounding variables (Ditch)
 penguins2 <- filter(penguins, species != "Chinstrap")
