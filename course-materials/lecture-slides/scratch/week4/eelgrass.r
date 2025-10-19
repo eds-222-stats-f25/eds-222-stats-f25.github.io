@@ -251,6 +251,32 @@ ggsave("course-materials/lecture-slides/scratch/week4/diff_prop_boot.png",
 
 
 
+# Quiz 9
+binom_pmf <- tibble(
+  x = 0:10,
+  pmf = dbinom(x, 10, 0.70)
+)
+ggplot() +
+  geom_segment(aes(x = x, y = pmf, xend = x, yend = 0),
+               binom_pmf,
+               linewidth = 2, color = "black") +
+  geom_point(aes(x = x, y = pmf),
+             binom_pmf,
+             color = "black", size = 6, shape = 21, stroke = 2) +
+  labs(x = "Successes",
+       y = "Mass") +
+  scale_x_continuous(breaks = 0:10, minor_breaks = NULL) +
+  scale_y_continuous(breaks = seq(0, 0.3, by = 0.05)) +
+  theme_bw(18)
+
+
+
+
+
+
+
+
+
 
 
 
