@@ -8,9 +8,9 @@ description: "Theme: Conducting Inference"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Inference with mathematical models | [IMS Ch 13, 16-17](https://openintrostat.github.io/ims/foundations-mathematical.html) |
-| Lab | Type I and II errors | [IMS Ch 19-20](https://openintrostat.github.io/ims/inference-one-mean.html) |
-| Lecture 2 | Linear regression inference | [IMS Ch 24](https://openintrostat.github.io/ims/inf-model-slr.html) |
+| Lecture 1 | Linear regression inference | [IMS Ch 24-25](https://openintrostat.github.io/ims/inf-model-slr.html) |
+| Lab | Forks, pipes, and colliders | *None* |
+| Lecture 2 | Adventures in inference | [IMS Ch 18-21](https://openintrostat.github.io/ims/inference-tables.html) |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
@@ -18,6 +18,5 @@ description: "Theme: Conducting Inference"
 | Assignment Type | Note                      |
 |-----------------|---------------------------|
 | Homework        | Homework 2 posted         |
-| Final project   | Exploratory analysis due  |
 : {.hover .bordered tbl-colwidths="[20,30,20,30]"} 
 

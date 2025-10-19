@@ -8,9 +8,9 @@ description: "Theme: Conducting Inference"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Forks, pipes, and colliders | *None* |
-| Lab | Monty Hall and Simpson’s paradoxes | *None* |
-| Lecture 2 | Permutation and bootstrapping | [IMS Ch 11-12](https://openintrostat.github.io/ims/foundations-randomization.html) |
+| Lecture 1 | [Permutation and bootstrapping](lecture-slides/lecture4-1.pdf){target="_blank"} | [IMS Ch 11-12](https://openintrostat.github.io/ims/foundations-randomization.html) |
+| Lab | Permutation and bootstrapping in R | *None* |
+| Lecture 2 | Inference with mathematical models | [IMS Ch 13, 16-17](https://openintrostat.github.io/ims/foundations-mathematical.html) |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
