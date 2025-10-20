@@ -17,6 +17,7 @@ restoration <- tibble(
                             rate = 0.05),
   success_fct = factor(success, labels = c("Fail", "Succeed"))
 )
+write_csv(restoration, "course-materials/labs/data/eelgrass.csv")
 summary(lm(success ~ treatment, restoration))
 summary(lm(shoot_density_m2 ~ treatment, restoration))
 ggplot(restoration, aes(treatment, fill = success_fct)) +
