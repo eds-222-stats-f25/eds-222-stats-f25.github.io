@@ -8,15 +8,23 @@ description: "Theme: Conducting Inference"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Adventures in inference | [IMS Ch 18-21](https://openintrostat.github.io/ims/inference-tables.html){target="_blank"} |
+| Lecture 1 | [Adventures in inference](lecture-slides/lecture5-1.pdf){target="_blank"} | [IMS Ch 18-21](https://openintrostat.github.io/ims/inference-tables.html){target="_blank"} |
 | Lab | Mathematical inference in R | *None* |
 | Lecture 2 | Linear regression inference | [IMS Ch 24-25](https://openintrostat.github.io/ims/inf-model-slr.html){target="_blank"} |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
 
-| Assignment Type | Note                      |
-|-----------------|---------------------------|
-| Homework        | Homework 2 posted         |
++-----------------+-------------------------------------+
+| Assignment Type | Note                                |
++=================+=====================================+
+| Homework        | Homework 2 posted                   |
+|                 |                                     |
+|                 | Homework 1 re-assessment due        |
+|                 |                                     |
+|                 | Midterm 1 re-assessment due         |
++-----------------+-------------------------------------+
+| Final project   | Exploratory analysis due            |
++-----------------+-------------------------------------+
 : {.hover .bordered tbl-colwidths="[20,30,20,30]"} 
 

@@ -44,42 +44,42 @@
   {
     "objectID": "course-materials/labs/lab4-key.html",
     "href": "course-materials/labs/lab4-key.html",
-    "title": "Lab 4",
+    "title": "Lab 4 (key)",
     "section": "",
     "text": "In today’s lab you will…\n\nRun a permutation test to answer a “yes/no?” question\nBootstrap a confidence interval to answer a “how much?” question\n\n\nlibrary(tidyverse)\ntheme_set(theme_classic(14))\nset.seed(123)"
   },
   {
     "objectID": "course-materials/labs/lab4-key.html#learning-objectives",
     "href": "course-materials/labs/lab4-key.html#learning-objectives",
-    "title": "Lab 4",
+    "title": "Lab 4 (key)",
     "section": "",
     "text": "In today’s lab you will…\n\nRun a permutation test to answer a “yes/no?” question\nBootstrap a confidence interval to answer a “how much?” question\n\n\nlibrary(tidyverse)\ntheme_set(theme_classic(14))\nset.seed(123)"
   },
   {
     "objectID": "course-materials/labs/lab4-key.html#eel-grass-restoration",
     "href": "course-materials/labs/lab4-key.html#eel-grass-restoration",
-    "title": "Lab 4",
+    "title": "Lab 4 (key)",
     "section": "Eel grass restoration",
     "text": "Eel grass restoration\nRecall the eel grass restoration example from yesterday’s lecture. The data recorded whether attempts to restore eel grass were successful based on the method used (garden staple or popsicle stick) Figure 1.\n\nrestoration &lt;- read_csv(\"data/eelgrass.csv\",\n                        show_col_types = FALSE)\nglimpse(restoration)\n\nRows: 100\nColumns: 5\n$ plot_id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…\n$ treatment        &lt;chr&gt; \"Garden staple\", \"Popsicle stick\", \"Garden staple\", \"…\n$ success          &lt;dbl&gt; 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,…\n$ shoot_density_m2 &lt;dbl&gt; 45.94241, 91.60585, 120.92760, 67.86314, 88.09977, 87…\n$ success_fct      &lt;chr&gt; \"Succeed\", \"Succeed\", \"Fail\", \"Fail\", \"Succeed\", \"Suc…\n\n\n\nggplot(restoration, aes(treatment, fill = success_fct)) +\n  geom_bar() +\n  scale_fill_manual(values = c(\"firebrick\", \"cornflowerblue\")) +\n  labs(x = \"Restoration method\",\n       y = \"Sites\",\n       fill = \"Outcome\") +\n  theme(legend.position = \"inside\",\n        legend.position.inside = c(1, 1),\n        legend.justification = c(1, 1))\n\n\n\n\n\n\n\nFigure 1: Success of eelgrass restoration plots by restoration method."
   },
   {
     "objectID": "course-materials/labs/lab4-key.html#permutation-test",
     "href": "course-materials/labs/lab4-key.html#permutation-test",
-    "title": "Lab 4",
+    "title": "Lab 4 (key)",
     "section": "Permutation test",
     "text": "Permutation test\nWe want to know if the popsicle stick method works better for restoration than garden staples. This is a “yes/no?” question, so we’ll use a permutation test for our hypothesis. Recall the steps for hypothesis testing:\n\nIdentify the TEST STATISTIC\nState your NULL and ALTERNATIVE hypotheses\nCalculate the OBSERVED test statistic\nEstimate the NULL DISTRIBUTION\nCalculate P-VALUE\nCompare p-value to CRITICAL THRESHOLD\n\n\nIdentify the test statistic\nQ1: What is the appropriate test statistic for this question?\nDifference in proportions\n\n\nState your null and alternative hypotheses\nQ2: What are your null and alternative hypotheses?\nH0: There’s no difference in outcome between garden staple and popsicle stick methods.\nHA: The popsicle stick method is more likely to succeed than the garden staple method.\n\n\nCalculate the observed test statistic\nQ3: How would you calculate the test statistic for the sample?\n\nsuccess_props &lt;- restoration %&gt;% \n  group_by(treatment) %&gt;% \n  summarize(prop_success = mean(success))\n\ndiff_props &lt;- success_props$prop_success[2] - success_props$prop_success[1]\n\ndiff_props\n\n[1] 0.1416667\n\n\n\n\nEstimate the null distribution\nThis is the key part of a permutation test! Remember, our goal is to estimate the distribution of possible outcomes under the null hypothesis. To do that, we have to break the association between treatment and outcome.\nQ4: What column should we shuffle to break the association between treatment and outcome?\ntreatment\nQ5: Fill in the following code to perform one permutation and calculate the test statistic.\n\none_permutation &lt;- restoration %&gt;% \n  mutate(treatment = sample(treatment, \n                            size = length(treatment), \n                            replace = FALSE))\n\npermutation_props &lt;- one_permutation %&gt;% \n  group_by(treatment) %&gt;% \n  summarize(prop_success = mean(success))\n\npermutation_diff_props &lt;- permutation_props$prop_success[2] - permutation_props$prop_success[1]\n\npermutation_diff_props\n\n[1] -0.06666667\n\n\nThat gives us the value of the test statistic for just one permutation. To get a distribution, we have to repeat the process many times. Let’s do it 1,000 times.\nQ6: Fill in the following code to perform 1,000 permutations and estimate the null distribution\n\npermute &lt;- function(i) {\n  one_permutation &lt;- restoration %&gt;% \n    mutate(treatment = sample(treatment, \n                              size = length(treatment), \n                              replace = FALSE))\n  \n  permutation_props &lt;- one_permutation %&gt;% \n    group_by(treatment) %&gt;% \n    summarize(prop_success = mean(success))\n  \n  permutation_diff_props &lt;- permutation_props$prop_success[2] - permutation_props$prop_success[1]\n  \n  permutation_diff_props\n}\n\nnull_distribution &lt;- map_dbl(1:1000, permute)\n\nQ7: Visualize the null distribution using a histogram and show where the observed test statistic falls\n\nnull_distribution_df &lt;- tibble(null_distribution)\nggplot(null_distribution_df, aes(null_distribution)) +\n  geom_histogram(binwidth = 0.05) +\n  geom_vline(xintercept = diff_props, \n             color = \"firebrick\",\n             linewidth = 1.5)\n\n\n\n\n\n\n\n\n\n\nCalculate the p-value\nThe p-value is the probability of a test statistic at least as extreme as the observed, given the null hypothesis. In other words, what proportion of the null distribution exceeds the observed?\nQ8: Calculate the p-value using the null distribution and observed test statistic\n\np_val &lt;- mean(null_distribution &gt; diff_props)\n\np_val\n\n[1] 0.059\n\n# Note: the in-class p-value was 0.045. This p-value is 0.059. That's due to variation in the permutation sampling, a difference of ~1%.\n\n\n\nInterpret the p-value\nWhen interpreting the p-value, we compare it to a critical threshold, usually denoted with \\(\\alpha\\). By convention, we usually set \\(\\alpha\\) to 0.05.\nQ10: Given \\(p \\gt \\alpha\\), which of the following statements is a correct interpretation and why?\n\nOur evidence is consistent with the hypothesis that restoration method does not influence restoration outcome\nWe cannot reject the hypothesis that restoration method does not influence restoration outcome\n\nThe second interpretation is correct, because it simply fails to reject the null hypothesis. The first interpretation is incorrect because it implies we found evidence to support the null hypothesis, which is too strong of a statement given the results."
   },
   {
     "objectID": "course-materials/labs/lab4-key.html#bootstrap-confidence-interval",
     "href": "course-materials/labs/lab4-key.html#bootstrap-confidence-interval",
-    "title": "Lab 4",
+    "title": "Lab 4 (key)",
     "section": "Bootstrap confidence interval",
     "text": "Bootstrap confidence interval\nNow let’s answer a “how much?” question. We want to estimate an interval that we think contains the population parameter. For that, we use bootstrapping.\nRecall the steps for bootstrapping:\n\nIdentify the TEST STATISTIC\nSubstitute sample for population and draw BOOTSTRAP SAMPLES\nEstimate the BOOTSTRAP DISTRIBUTION of the test statistic\nCalculate the CONFIDENCE INTERVAL\n\n\nIdentify the test statistic\nQ11: What is the appropriate test statistic for this question?\nDifference in proportions\n\n\nDraw bootstrap samples\nThis is the key part of bootstrapping! Remember, our goal is to estimate the variation of our population’s parameter due to sampling. To do that, we simulate the process of re-doing our experiment, using the original sample as a substitute for the population.\nQ12: Fill in the following code to draw one bootstrap sample.\n\none_bootstrap &lt;- restoration %&gt;% \n  group_by(treatment) %&gt;% \n  mutate(success = sample(success,\n                          size = length(success),\n                          replace = TRUE)) %&gt;% \n  ungroup()\n\nQ13: Fill in the following code to draw 1,000 bootstrap samples.\n\n\n\n\n\n\nTip\n\n\n\nlist_rbind() will take a list of data frames and bind them row-wise into one data frame.\n\n\n\nbootstrap &lt;- function(i) {\n  one_bootstrap &lt;- restoration %&gt;% \n    group_by(treatment) %&gt;% \n    mutate(success = sample(success,\n                            size = length(success),\n                            replace = TRUE)) %&gt;% \n    ungroup() %&gt;% \n    mutate(trial = i)\n}\n\nbootstrap_samples &lt;- map(1:1000, bootstrap) %&gt;% \n  list_rbind()\n\n\n\nEstimate the bootstrap distribution of the test statistic\nQ14: Fill in the following code to alculate the test statistic for each bootstrap sample.\n\nboot_diff_prop &lt;- bootstrap_samples %&gt;% \n  group_by(trial, treatment) %&gt;% \n  summarize(prop_success = mean(success),\n            .groups = \"drop_last\") %&gt;% \n  summarize(diff_prop = prop_success[2] - prop_success[1])\n\nQ15: Visualize the bootstrapped distribution of the test statistic.\n\nggplot(boot_diff_prop, aes(diff_prop)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\n\n\n\nCalculate the confidence interval\nA confidence interval (CI) is a range we are confident contains the population parameter. The bootstrapped distribution of the test statistic describes where we expect the population parameter to fall. So a 95% confidence interval, for example, spans the range from the 2.5% quantile of the bootstrap distribution to the 97.5% quantile.\nQ16: Find the bounds of the 95% CI.\n\n\n\n\n\n\nTip\n\n\n\nThe quantile() function finds quantiles. It’s vectorized over the parameter probs, so you can find multiple quantiles at once\n\n\n\nrestoration_ci &lt;- quantile(boot_diff_prop$diff_prop, c(0.025, 0.975))\nrestoration_ci\n\n       2.5%       97.5% \n-0.05020833  0.34166667 \n\n\nQ17: Update your visual from Q15 to include the observed test statistic with a solid line and the confidence interval represented with dotted lines.\n\nggplot(boot_diff_prop, aes(diff_prop)) +\n  geom_histogram() +\n  geom_vline(xintercept = diff_props, \n             color = \"firebrick\",\n             linewidth = 1.5) +\n  geom_vline(xintercept = restoration_ci, \n             color = \"firebrick\",\n             linetype = \"dotted\",\n             linewidth = 1.5)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
   },
   {
     "objectID": "course-materials/labs/lab4-key.html#permutation-vs-bootstrap",
     "href": "course-materials/labs/lab4-key.html#permutation-vs-bootstrap",
-    "title": "Lab 4",
+    "title": "Lab 4 (key)",
     "section": "Permutation vs bootstrap",
     "text": "Permutation vs bootstrap\nThe visualization you created for Q7 shows the null distribution of the test statistic. The visualization you created for Q17 shows the bootstrapped distribution of the test statistic.\nQ18: What did you do to make the null distribution center on zero? Specifically, what code?\nBroke the association between treatment and outcome. Sampled treatment without replacement.\nQ19: What did you do to make the bootstrap distribution center on the observed test statistic? Specifically, what code?\nRetained the association between treatment and outcome. Grouped by treatment, then sampled with replacement.\nQ20: What would happen to your bootstrap distribution if you sampled without replacement?\nSampling without replacement is just shuffling. Since we sampled within treatments, the bootstrap samples would always match the observed sample. So there would be no variation in the bootstrap distribution of the test statistic."
   },
@@ -172,7 +172,7 @@
     "href": "course-materials/week5.html#assignment-reminders",
     "title": "Mechanics of Inference",
     "section": " Assignment Reminders",
-    "text": "Assignment Reminders\n\n\n\n\n\n\n\nAssignment Type\nNote\n\n\n\n\nHomework\nHomework 2 posted"
+    "text": "Assignment Reminders\n\n\n\n\n\n\n\nAssignment Type\nNote\n\n\n\n\nHomework\nHomework 2 posted\nHomework 1 re-assessment due\nMidterm 1 re-assessment due\n\n\nFinal project\nExploratory analysis due"
   },
   {
     "objectID": "course-materials/week3.html",
@@ -284,14 +284,14 @@
     "href": "course-materials/week4.html",
     "title": "Introduction to Inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPermutation and bootstrapping\nIMS Ch 11-12\n\n\nLab\nPermutation and bootstrapping in R\nNone\n\n\nLecture 2\nInference with mathematical models\nIMS Ch 13, 16-17"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPermutation and bootstrapping\nIMS Ch 11-12\n\n\nLab\nPermutation and bootstrapping in R (key)\nNone\n\n\nLecture 2\nInference with mathematical models\nIMS Ch 13, 16-17"
   },
   {
     "objectID": "course-materials/week4.html#lecture-materials",
     "href": "course-materials/week4.html#lecture-materials",
     "title": "Introduction to Inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPermutation and bootstrapping\nIMS Ch 11-12\n\n\nLab\nPermutation and bootstrapping in R\nNone\n\n\nLecture 2\nInference with mathematical models\nIMS Ch 13, 16-17"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nPermutation and bootstrapping\nIMS Ch 11-12\n\n\nLab\nPermutation and bootstrapping in R (key)\nNone\n\n\nLecture 2\nInference with mathematical models\nIMS Ch 13, 16-17"
   },
   {
     "objectID": "course-materials/week4.html#assignment-reminders",
@@ -305,14 +305,14 @@
     "href": "course-materials/week6.html",
     "title": "Connections in inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nAnalysis of variance\nIMS Ch 22\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nForks, pipes, and colliders\nNone\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
   },
   {
     "objectID": "course-materials/week6.html#lecture-materials",
     "href": "course-materials/week6.html#lecture-materials",
     "title": "Connections in inference",
     "section": "",
-    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nAnalysis of variance\nIMS Ch 22\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
+    "text": "Session\nTopic\nReading\n\n\n\n\nLecture 1\nForks, pipes, and colliders\nNone\n\n\nLab\nMidterm review\nNone\n\n\nLecture 2\nMidterm 2\nNone"
   },
   {
     "objectID": "course-materials/week6.html#assignment-reminders",
@@ -485,6 +485,48 @@
   {
     "objectID": "course-materials/labs/lab4.html#permutation-vs-bootstrap",
     "href": "course-materials/labs/lab4.html#permutation-vs-bootstrap",
+    "title": "Lab 4",
+    "section": "Permutation vs bootstrap",
+    "text": "Permutation vs bootstrap\nThe visualization you created for Q7 shows the null distribution of the test statistic. The visualization you created for Q17 shows the bootstrapped distribution of the test statistic.\nQ18: What did you do to make the null distribution center on zero? Specifically, what code?\nQ19: What did you do to make the bootstrap distribution center on the observed test statistic? Specifically, what code?\nQ20: What would happen to your bootstrap distribution if you sampled without replacement?"
+  },
+  {
+    "objectID": "course-materials/labs/lab5.html",
+    "href": "course-materials/labs/lab5.html",
+    "title": "Lab 4",
+    "section": "",
+    "text": "In today’s lab you will…\n\nRun a permutation test to answer a “yes/no?” question\nBootstrap a confidence interval to answer a “how much?” question\n\n\nlibrary(tidyverse)\ntheme_set(theme_classic(14))\nset.seed(123)"
+  },
+  {
+    "objectID": "course-materials/labs/lab5.html#learning-objectives",
+    "href": "course-materials/labs/lab5.html#learning-objectives",
+    "title": "Lab 4",
+    "section": "",
+    "text": "In today’s lab you will…\n\nRun a permutation test to answer a “yes/no?” question\nBootstrap a confidence interval to answer a “how much?” question\n\n\nlibrary(tidyverse)\ntheme_set(theme_classic(14))\nset.seed(123)"
+  },
+  {
+    "objectID": "course-materials/labs/lab5.html#eel-grass-restoration",
+    "href": "course-materials/labs/lab5.html#eel-grass-restoration",
+    "title": "Lab 4",
+    "section": "Eel grass restoration",
+    "text": "Eel grass restoration\nRecall the eel grass restoration example from yesterday’s lecture. The data recorded whether attempts to restore eel grass were successful based on the method used (garden staple or popsicle stick) Figure 1.\n\nrestoration &lt;- read_csv(\"data/eelgrass.csv\",\n                        show_col_types = FALSE)\nglimpse(restoration)\n\nRows: 100\nColumns: 5\n$ plot_id          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16…\n$ treatment        &lt;chr&gt; \"Garden staple\", \"Popsicle stick\", \"Garden staple\", \"…\n$ success          &lt;dbl&gt; 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1,…\n$ shoot_density_m2 &lt;dbl&gt; 45.94241, 91.60585, 120.92760, 67.86314, 88.09977, 87…\n$ success_fct      &lt;chr&gt; \"Succeed\", \"Succeed\", \"Fail\", \"Fail\", \"Succeed\", \"Suc…\n\n\n\nggplot(restoration, aes(treatment, fill = success_fct)) +\n  geom_bar() +\n  scale_fill_manual(values = c(\"firebrick\", \"cornflowerblue\")) +\n  labs(x = \"Restoration method\",\n       y = \"Sites\",\n       fill = \"Outcome\") +\n  theme(legend.position = \"inside\",\n        legend.position.inside = c(1, 1),\n        legend.justification = c(1, 1))\n\n\n\n\n\n\n\nFigure 1: Success of eelgrass restoration plots by restoration method."
+  },
+  {
+    "objectID": "course-materials/labs/lab5.html#permutation-test",
+    "href": "course-materials/labs/lab5.html#permutation-test",
+    "title": "Lab 4",
+    "section": "Permutation test",
+    "text": "Permutation test\nWe want to know if the popsicle stick method works better for restoration than garden staples. This is a “yes/no?” question, so we’ll use a permutation test for our hypothesis. Recall the steps for hypothesis testing:\n\nIdentify the TEST STATISTIC\nState your NULL and ALTERNATIVE hypotheses\nCalculate the OBSERVED test statistic\nEstimate the NULL DISTRIBUTION\nCalculate P-VALUE\nCompare p-value to CRITICAL THRESHOLD\n\n\nIdentify the test statistic\nQ1: What is the appropriate test statistic for this question?\n\n\nState your null and alternative hypotheses\nQ2: What are your null and alternative hypotheses?\nH0:\nHA:\n\n\nCalculate the observed test statistic\nQ3: How would you calculate the test statistic for the sample?\n\n\nEstimate the null distribution\nThis is the key part of a permutation test! Remember, our goal is to estimate the distribution of possible outcomes under the null hypothesis. To do that, we have to break the association between treatment and outcome.\nQ4: What column should we shuffle to break the association between treatment and outcome?\nQ5: Fill in the following code to perform one permutation and calculate the test statistic.\n\none_permutation &lt;- ??? %&gt;% \n  mutate(??? = sample(???, \n                      size = length(???), \n                      replace = FALSE))\n\npermutation_props &lt;- one_permutation %&gt;% \n  group_by(???) %&gt;% \n  summarize(???)\n\npermutation_diff_props &lt;- permutation_props$???[2] - permutation_props$???[1]\n\npermutation_diff_props\n\nThat gives us the value of the test statistic for just one permutation. To get a distribution, we have to repeat the process many times. Let’s do it 1,000 times.\nQ6: Fill in the following code to perform 1,000 permutations and estimate the null distribution\n\npermute &lt;- function(i) {\n  ???\n}\n\nnull_distribution &lt;- map_dbl(???, ???)\n\nQ7: Visualize the null distribution using a histogram and show where the observed test statistic falls\n\n\nCalculate the p-value\nThe p-value is the probability of a test statistic at least as extreme as the observed, given the null hypothesis. In other words, what proportion of the null distribution exceeds the observed?\nQ8: Calculate the p-value using the null distribution and observed test statistic\n\np_val &lt;- ???\n\np_val\n\n\n\nInterpret the p-value\nWhen interpreting the p-value, we compare it to a critical threshold, usually denoted with \\(\\alpha\\). By convention, we usually set \\(\\alpha\\) to 0.05.\nQ10: Given \\(p \\gt \\alpha\\), which of the following statements is a correct interpretation and why?\n\nOur evidence is consistent with the hypothesis that restoration method does not influence restoration outcome\nWe cannot reject the hypothesis that restoration method does not influence restoration outcome"
+  },
+  {
+    "objectID": "course-materials/labs/lab5.html#bootstrap-confidence-interval",
+    "href": "course-materials/labs/lab5.html#bootstrap-confidence-interval",
+    "title": "Lab 4",
+    "section": "Bootstrap confidence interval",
+    "text": "Bootstrap confidence interval\nNow let’s answer a “how much?” question. We want to estimate an interval that we think contains the population parameter. For that, we use bootstrapping.\nRecall the steps for bootstrapping:\n\nIdentify the TEST STATISTIC\nSubstitute sample for population and draw BOOTSTRAP SAMPLES\nEstimate the BOOTSTRAP DISTRIBUTION of the test statistic\nCalculate the CONFIDENCE INTERVAL\n\n\nIdentify the test statistic\nQ11: What is the appropriate test statistic for this question?\n\n\nDraw bootstrap samples\nThis is the key part of bootstrapping! Remember, our goal is to estimate the variation of our population’s parameter due to sampling. To do that, we simulate the process of re-doing our experiment, using the original sample as a substitute for the population. To “re-do” our experiment, we have to keep the association between treatment and outcome.\nQ12: Fill in the following code to draw one bootstrap sample.\n\none_bootstrap &lt;- ??? %&gt;% \n  ??? %&gt;% \n  mutate(??? = sample(???,\n                      size = length(???),\n                      replace = ???)) %&gt;% \n  ungroup()\n\nQ13: Fill in the following code to draw 1,000 bootstrap samples.\n\n\n\n\n\n\nTip\n\n\n\nlist_rbind() will take a list of data frames and bind them row-wise into one data frame.\n\n\n\nbootstrap &lt;- function(i) {\n  ??? %&gt;% \n    mutate(trial = i)\n}\n\nbootstrap_samples &lt;- map(???, ???) %&gt;% \n  ???\n\n\n\nEstimate the bootstrap distribution of the test statistic\nQ14: Fill in the following code to calculate the test statistic for each bootstrap sample.\nQ15: Visualize the bootstrapped distribution of the test statistic.\n\n\nCalculate the confidence interval\nA confidence interval (CI) is a range we are confident contains the population parameter. The bootstrapped distribution of the test statistic describes where we expect the population parameter to fall. So a 95% confidence interval, for example, spans the range from the 2.5% quantile of the bootstrap distribution to the 97.5% quantile.\nQ16: Find the bounds of the 95% CI.\n\n\n\n\n\n\nTip\n\n\n\nThe quantile() function finds quantiles. It’s vectorized over the parameter probs, so you can find multiple quantiles at once\n\n\n\nrestoration_ci &lt;- ???\nrestoration_ci\n\nQ17: Update your visual from Q15 to include the observed test statistic with a solid line and the confidence interval represented with dotted lines."
+  },
+  {
+    "objectID": "course-materials/labs/lab5.html#permutation-vs-bootstrap",
+    "href": "course-materials/labs/lab5.html#permutation-vs-bootstrap",
     "title": "Lab 4",
     "section": "Permutation vs bootstrap",
     "text": "Permutation vs bootstrap\nThe visualization you created for Q7 shows the null distribution of the test statistic. The visualization you created for Q17 shows the bootstrapped distribution of the test statistic.\nQ18: What did you do to make the null distribution center on zero? Specifically, what code?\nQ19: What did you do to make the bootstrap distribution center on the observed test statistic? Specifically, what code?\nQ20: What would happen to your bootstrap distribution if you sampled without replacement?"

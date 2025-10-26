@@ -174,7 +174,9 @@ ggplot() +
                 color = "cornflowerblue",
                 linewidth = 1.5,
                 xlim = c(-0.5, 0.5)) +
-  geom_vline(xintercept = delta_p_spl, color = "firebrick", linewidth = 2)
+  geom_vline(xintercept = delta_p_spl, color = "firebrick", linewidth = 2) +
+  labs(x = "Difference in proportions",
+       y = "Density")
 ggsave("course-materials/lecture-slides/scratch/week4/null_hyp.png",
        width = 5,
        height = 5,

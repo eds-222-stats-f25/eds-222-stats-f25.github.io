@@ -6,17 +6,12 @@ description: "Theme: Conducting Inference"
 
 ## {{< fa person-chalkboard title="a person pointing at a chalkboard" >}} Lecture Materials {#lecture-materials}
 
-+-----------------------+--------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
-| Session               | Topic                                                                                | Reading                                                                               |
-+=======================+======================================================================================+=======================================================================================+
-| Lecture 1             | [Permutation and bootstrapping](lecture-slides/lecture4-1.pdf){target="_blank"}      | [IMS Ch 11-12](https://openintrostat.github.io/ims/foundations-randomization.html)    |
-+-----------------------+--------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
-| Lab                   | [Permutation and bootstrapping in R](labs/lab4.qmd)                                  | *None*                                                                                |
-+-----------------------+--------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
-| Lecture 2             | [Inference with mathematical models](lecture-slides/lecture4-2.pdf){target="_blank"} | [IMS Ch 13, 16-17](https://openintrostat.github.io/ims/foundations-mathematical.html) |
-+-----------------------+--------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
-
-: {.hover .bordered tbl-colwidths="\[25,50,25\]"}
+| Session | Topic  | Reading |
+|---------|--------|---------|
+| Lecture 1 | [Permutation and bootstrapping](lecture-slides/lecture4-1.pdf){target="_blank"} | [IMS Ch 11-12](https://openintrostat.github.io/ims/foundations-randomization.html) |
+| Lab | [Permutation and bootstrapping in R](labs/lab4.qmd) ([key](labs/lab4-key.qmd)) | *None* |
+| Lecture 2 | [Inference with mathematical models](lecture-slides/lecture4-2.pdf){target="_blank"} | [IMS Ch 13, 16-17](https://openintrostat.github.io/ims/foundations-mathematical.html) |
+: {.hover .bordered tbl-colwidths="[25,50,25]"}
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
 
