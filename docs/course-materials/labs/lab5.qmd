@@ -1,15 +1,13 @@
 ---
-title: "Lab 4"
-subtitle: "Permutation and bootstrapping in R"
+title: "Lab 5"
+subtitle: "Mathematical inference in R"
 toc: true
 editor: visual
 format:
   html:
     other-links:
       - text: Download Source
-        href: lab4.qmd
-      - text: Eel Grass Restoration Data
-        href: data/eelgrass.csv
+        href: lab5.qmd
 editor_options: 
   chunk_output_type: console
 ---
@@ -18,8 +16,9 @@ editor_options:
 
 In today's lab you will...
 
-1.  Run a **permutation test** to answer a "yes/no?" question
-2.  **Bootstrap a confidence interval** to answer a "how much?" question
+1.  Use **mathematical models** to **test hypotheses**
+2.  Use **mathematical models** to **construct confidence intervals**
+3.  **Compare** mathematical and randomization approaches to inference
 
 ```{r}
 #| label: setup
@@ -32,23 +31,16 @@ set.seed(123)
 
 ```
 
-## Eel grass restoration
+## Mathematical models
 
-Recall the eel grass restoration example from yesterday's lecture. The data recorded whether attempts to restore eel grass were successful based on the method used (garden staple or popsicle stick) [@fig-eelgrass-data].
-
-```{r}
-#| label: read-eelgrass-data
-
-restoration <- read_csv("data/eelgrass.csv",
-                        show_col_types = FALSE)
-glimpse(restoration)
-
-```
+This lab will repeat the inferences you conducted in last week's lab, using mathematical models instead of randomization. Let's recall our data from last week. You'll need to copy the data file to your `week5/data` directory.
 
 ```{r}
 #| label: fig-eelgrass-data
 #| fig-cap: "Success of eelgrass restoration plots by restoration method."
 
+restoration <- read_csv("data/eelgrass.csv",
+                        show_col_types = FALSE)
 ggplot(restoration, aes(treatment, fill = success_fct)) +
   geom_bar() +
   scale_fill_manual(values = c("firebrick", "cornflowerblue")) +
@@ -61,22 +53,42 @@ ggplot(restoration, aes(treatment, fill = success_fct)) +
 
 ```
 
-## Permutation test
+### Hypothesis test
 
-We want to know if the popsicle stick method works better for restoration than garden staples. This is a *"yes/no?"* question, so we'll use a permutation test for our hypothesis. Recall the steps for hypothesis testing:
+Once again, we want to know if the popsicle stick method works better for restoration than garden staples. This is a *"yes/no?"* question, so we're conducting a hypothesis test. Instead of using permutation to estimate our sampling distribution, we will assume the sampling distribution is normally distributed. Under the *null hypothesis* (i.e., no difference in proportions), we make this assumption:
 
-1.  Identify the TEST STATISTIC
+$$
+\begin{align}
+\hat{p_2} - \hat{p_1} &\sim Normal(0, SE(\hat{p})) \\
+\hat{p} &= \frac{x_1 + x_2}{n_1 + n_2} \\
+SE(\hat{p_2} - \hat{p_1}) &= \sqrt{\hat{p} (1 - \hat{p}) (\frac{1}{n_1} + \frac{1}{n_2})} \\
+\end{align}
+$$
+
+::: callout-note
+This math describes the assumptions of the null hypothesis for a difference in proportions. The key points are:
+
+1.  The distribution of the statistic ($\hat{p_2} - \hat{p_1}$) follows a normal distribution (i.e., the shape of the sampling distribution).
+2.  We assume the mean of the sampling distribution is 0, because this is the **null hypothesis**.
+3.  The standard error of the sampling distribution is based on the POOLED proportion because we're assuming *no difference between the proportions*.
+:::
+
+This is how you would have tested your hypothesis using permutation:
+
+1.  Identify the STATISTIC
 2.  State your NULL and ALTERNATIVE hypotheses
-3.  Calculate the OBSERVED test statistic
+3.  Calculate the OBSERVED statistic
 4.  Estimate the NULL DISTRIBUTION
 5.  Calculate P-VALUE
 6.  Compare p-value to CRITICAL THRESHOLD
 
-### Identify the test statistic
+Using a mathematical model, you modify step 4. Instead of using randomization to estimate the null distribution, you use a normal variable. The following questions walk you through the steps. Note: many of these steps are *exactly the same* as last week's lab.
 
-**Q1: What is the appropriate test statistic for this question?**
+#### Identify the statistic
 
-### State your null and alternative hypotheses
+**Q1: What is the appropriate statistic for this question?**
+
+#### State your null and alternative hypotheses
 
 **Q2: What are your null and alternative hypotheses?**
 
@@ -84,203 +96,193 @@ H0:
 
 HA:
 
-### Calculate the observed test statistic
+#### Calculate the sample statistic
 
-**Q3: How would you calculate the test statistic *for the sample*?**
+**Q3: How would you calculate the statistic *for the sample*?**
+
+Call the variable `diff_props`.
 
 ```{r}
 #| label: q3
+#| eval: false
 
+success_props <- restoration %>% 
+  group_by(???) %>% 
+  summarize(prop_success = ???)
 
+diff_props <- ??? - ???
+
+diff_props
 
 ```
 
-### Estimate the null distribution
+#### Estimate the null distribution
 
-This is the key part of a permutation test! Remember, our goal is to estimate the distribution of possible outcomes *under the null hypothesis*. To do that, we have to break the association between treatment and outcome.
+**Q4: What's the standard error of the sample's statistic?**
 
-**Q4: What column should we shuffle to break the association between treatment and outcome?**
+```{r}
+#| label: q4
+#| eval: false
 
-**Q5: Fill in the following code to perform one permutation and calculate the test statistic.**
+# p_hat is the POOLED proportion, i.e. the overall proportion of success
+p_hat <- ???
+
+# n's are the number of observations in each treatment
+# n1: number of garden staple observations
+# n2: number of popsicle stick observations
+n1 <- ???
+n2 <- ???
+
+se_p_hat <- ???
+
+```
+
+If you calculated `se_p_hat` correctly, the following figure should depict the PDF of the null distribution. It should be a normal variable with mean equal to 0 and standard deviation equal to the standard error of $\hat p$.
+
+```{r}
+#| label: fig-null-distribution
+#| eval: false
+
+null_dist <- tibble(
+  diff_prop = seq(-0.4, 0.4, length.out = 1000),
+  density = dnorm(diff_prop, mean = 0, sd = se_p_hat)
+)
+ 
+ggplot(null_dist, aes(diff_prop, density)) +
+  geom_line(color = "cornflowerblue", linewidth = 2) +
+  geom_vline(xintercept = diff_props, color = "firebrick", linewidth = 2)
+
+```
+
+#### Calculate the p-value
+
+Use the `pnorm()` function to get the area under the curve of a normal distribution.
+
+::: callout-tip
+By default, `pnorm()` will tell you the area under the curve *to the left* of a value. Since we want the area *to the right* of the observed statistic, set `lower.tail` to `FALSE`.
+:::
+
+**Q5: Fill in the blanks to calculate the p-value**
 
 ```{r}
 #| label: q5
 #| eval: false
 
-one_permutation <- ??? %>% 
-  mutate(??? = sample(???, 
-                      size = length(???), 
-                      replace = FALSE))
-
-permutation_props <- one_permutation %>% 
-  group_by(???) %>% 
-  summarize(???)
-
-permutation_diff_props <- permutation_props$???[2] - permutation_props$???[1]
-
-permutation_diff_props
+p_val <- pnorm(???, mean = ???, sd = ???, ???)
+p_val
 
 ```
 
-That gives us the value of the test statistic for just one permutation. To get a distribution, we have to repeat the process many times. Let's do it 1,000 times.
+#### Compare p-value to critical threshold
 
-**Q6: Fill in the following code to perform 1,000 permutations and estimate the null distribution**
+**Q6: How does your p-value compare to a critical threshold** $\alpha=0.05$**? How would you interpret that?**
 
-```{r}
-#| label: q6
-#| eval: false
+### Confidence interval
 
-permute <- function(i) {
-  ???
-}
+Now we want to estimate how differently the popsicle stick and garden staple methods perform. This is a *"how much?"* question, so we're constructing a confidence interval. Instead of using bootstrapping to estimate our sampling distribution, we will assume the sampling distribution is normally distributed. We make this assumption:
 
-null_distribution <- map_dbl(???, ???)
+$$
+\begin{align}
+\hat{p_2} - \hat{p_1} &\sim Normal(p_2 - p_1, SE(\hat{p_2} - \hat{p_1})) \\
+SE(\hat{p_2} - \hat{p_1}) &= \sqrt{\frac{\hat{p_1}(1 - \hat{p_1})}{n_1} + \frac{\hat{p_2}(1 - \hat{p_2})}{n_2}} \\
+\end{align}
+$$
 
-```
+::: callout-note
+This math describes the assumptions of constructing a confidence interval for a difference in proportions. The key points are:
 
-**Q7: Visualize the null distribution using a histogram and show where the observed test statistic falls**
+1.  The distribution of the statistic ($\hat{p_2} - \hat{p_1}$) follows a normal distribution (i.e., the shape of the sampling distribution).
+2.  We assume the mean of the sampling distribution is the population parameter ($p_2 - p_1$).
+3.  The standard error of the sampling distribution is based on the two samples' proportions, rather than pooling them, because we're assuming *there's a difference between the proportions*.
+:::
 
-```{r}
-#| label: q7
+This is how you would have built a confidence interval using bootstrapping:
 
+1.  Identify the STATISTIC
+2.  Substitute sample for population and draw BOOTSTRAP SAMPLES
+3.  Estimate the BOOTSTRAP DISTRIBUTION of the statistic
+4.  Construct the CONFIDENCE INTERVAL
 
+Using a mathematical model changes how steps 2 and 3 work, with the same goal of estimating the sampling distribution. Instead of using randomization to draw bootstrap samples, you use a normal variable. The procedure works like this:
 
-```
+1.  Identify the STATISTIC
+2.  Calculate the STANDARD ERROR of the statistic
+3.  Construct the CONFIDENCE INTERVAL using a normal variable
 
-### Calculate the p-value
+The following questions walk you through the steps.
 
-The p-value is *the probability of a test statistic [at least]{.underline} as extreme as the observed, given the null hypothesis*. In other words, what proportion of the null distribution exceeds the observed?
+#### Identify the statistic
 
-**Q8: Calculate the p-value using the null distribution and observed test statistic**
+**Q7: What is the appropriate test statistic for this question?**
+
+#### Calculate the standard error
+
+**Q8: Fill in the blanks below to calculate the standard error of the statistic**
+
+::: callout-note
+Remember that the standard error is going to differ between hypothesis testing and confidence intervals. Hypothesis testing begins by assuming the *null hypothesis* is true, so the standard error describes a scenario where there are no differences ($p_2=p_1$). Confidence intervals assume the difference is real, so the standard error comes from a different scenario ($p_2 > p_1$). Hence the difference in equations.
+:::
 
 ```{r}
 #| label: q8
 #| eval: false
 
-p_val <- ???
+# Calculate the proportions of the two treatments
+# Let treatment 1 be "Garden staple"
+p_hat1 <- ???
+# Let treatment 2 be "Popsicle stick"
+p_hat2 <- ???
 
-p_val
+# n1 and n2 remain the same from before
+
+# Calculate standard error
+se_diff_props <- ???
+se_diff_props
 
 ```
 
-### Interpret the p-value
-
-When interpreting the p-value, we compare it to a *critical threshold*, usually denoted with $\alpha$. By convention, we usually set $\alpha$ to 0.05.
-
-**Q10:** **Given** $p \gt \alpha$**,** **which of the following statements is a correct interpretation and why?**
-
--   Our evidence is consistent with the hypothesis that restoration method does not influence restoration outcome
-
--   We cannot reject the hypothesis that restoration method does not influence restoration outcome
-
-## Bootstrap confidence interval
-
-Now let's answer a "how much?" question. We want to estimate an interval that we think contains the population parameter. For that, we use bootstrapping.
-
-Recall the steps for bootstrapping:
-
-1.  Identify the TEST STATISTIC
-2.  Substitute sample for population and draw BOOTSTRAP SAMPLES
-3.  Estimate the BOOTSTRAP DISTRIBUTION of the test statistic
-4.  Calculate the CONFIDENCE INTERVAL
-
-### Identify the test statistic
-
-**Q11: What is the appropriate test statistic for this question?**
-
-### Draw bootstrap samples
-
-This is the key part of bootstrapping! Remember, our goal is to estimate the variation of our population's parameter due to sampling. To do that, we simulate the process of re-doing our experiment, using the original sample as a substitute for the population. To "re-do" our experiment, we have to keep the association between treatment and outcome.
-
-**Q12: Fill in the following code to draw one bootstrap sample.**
+If you calculated `se_diff_props` correctly, the following figure should depict the PDF of the sampling distribution. It should be a normal variable with mean equal to the observed statistic in the sample and standard deviation equal to the standard error.
 
 ```{r}
-#| label: q12
+#| label: fig-ci-sampling-distribution
 #| eval: false
 
-one_bootstrap <- ??? %>% 
-  ??? %>% 
-  mutate(??? = sample(???,
-                      size = length(???),
-                      replace = ???)) %>% 
-  ungroup()
+sampling_dist <- tibble(
+  diff_prop = seq(-0.2, 0.5, length.out = 1000),
+  density = dnorm(diff_prop, mean = diff_props, sd = se_diff_props)
+)
+ 
+ggplot(sampling_dist, aes(diff_prop, density)) +
+  geom_line(color = "cornflowerblue", linewidth = 2) +
+  geom_vline(xintercept = diff_props, color = "firebrick", linewidth = 2)
 
 ```
 
-**Q13: Fill in the following code to draw 1,000 bootstrap samples.**
+#### Construct the confidence interval
 
-::: callout-tip
-`list_rbind()` will take a list of data frames and bind them row-wise into one data frame.
-:::
+Using bootstrapping, you constructed the confidence interval using the 2.5% and 97.5% quantiles of the bootstrapped sampling distribution. Using the mathematical model, you use the function `qnorm()`. Whereas `pnorm()` returns the area under the curve, `qnorm()` tells you what value corresponds to a given area. In other words, they're inverses of each other.
+
+If you wanted to shade in the middle 95% of the area in [@fig-ci-sampling-distribution], `qnorm()` would tell you the left and right boundaries.
+
+**Q9: Fill in the blanks to use** `qnorm()` **in constructing the confidence interval.**
 
 ```{r}
-#| label: q13
+#| label: q9
 #| eval: false
 
-bootstrap <- function(i) {
-  ??? %>% 
-    mutate(trial = i)
-}
-
-bootstrap_samples <- map(???, ???) %>% 
-  ???
+diff_props_ci <- qnorm(???, mean = ???, sd = ???)
+diff_props_ci
 
 ```
 
-### Estimate the bootstrap distribution of the test statistic
+**Q10: How would you interpret this confidence interval**
 
-**Q14: Fill in the following code to calculate the test statistic for each bootstrap sample.**
+## Comparing mathematical and randomization approaches
 
-```{r}
-#| label: q14
+**Q11: What are permutation tests and mathematical models [both]{.underline} trying to estimate for hypothesis tests?**
 
+**Q12: What are bootstrapping and mathematical models [both]{.underline} trying to estimate for confidence intervals?**
 
+**Q13: What area under the curve is relevant to hypothesis tests? What R function calculates it for a mathematical model?**
 
-```
-
-**Q15: Visualize the bootstrapped distribution of the test statistic.**
-
-```{r}
-#| label: q15
-
-
-
-```
-
-### Calculate the confidence interval
-
-A confidence interval (CI) is a range we are confident contains the population parameter. The bootstrapped distribution of the test statistic describes where we expect the population parameter to fall. So a 95% confidence interval, for example, spans the range from the 2.5% quantile of the bootstrap distribution to the 97.5% quantile.
-
-**Q16: Find the bounds of the 95% CI.**
-
-::: callout-tip
-The `quantile()` function finds quantiles. It's vectorized over the parameter `probs`, so you can find multiple quantiles at once
-:::
-
-```{r}
-#| label: q16
-#| eval: false
-
-restoration_ci <- ???
-restoration_ci
-
-```
-
-**Q17: Update your visual from Q15 to include the observed test statistic with a solid line and the confidence interval represented with dotted lines.**
-
-```{r}
-#| label: q17
-
-
-
-```
-
-## Permutation vs bootstrap
-
-The visualization you created for Q7 shows the null distribution of the test statistic. The visualization you created for Q17 shows the bootstrapped distribution of the test statistic.
-
-**Q18: What did you do to make the null distribution center on zero? Specifically, what code?**
-
-**Q19: What did you do to make the bootstrap distribution center on the observed test statistic? Specifically, what code?**
-
-**Q20: What would happen to your bootstrap distribution if you sampled without replacement?**
+**Q14: What area under the curve is relevant to confidence intervals? What R function calculates it for a mathematical model?**

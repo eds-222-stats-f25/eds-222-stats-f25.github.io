@@ -316,7 +316,7 @@ window.Quarto = {
 <div id="fig-eelgrass-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eelgrass-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="lab5_files/figure-html/fig-eelgrass-data-1.png" class="img-fluid figure-img" width="672">
+<img src="lab5-key_files/figure-html/fig-eelgrass-data-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eelgrass-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Success of eelgrass restoration plots by restoration method.
@@ -366,12 +366,13 @@ Note
 <section id="identify-the-statistic" class="level4">
 <h4 class="anchored" data-anchor-id="identify-the-statistic">Identify the statistic</h4>
 <p><strong>Q1: What is the appropriate statistic for this question?</strong></p>
+<p><em>Difference in proportions</em></p>
 </section>
 <section id="state-your-null-and-alternative-hypotheses" class="level4">
 <h4 class="anchored" data-anchor-id="state-your-null-and-alternative-hypotheses">State your null and alternative hypotheses</h4>
 <p><strong>Q2: What are your null and alternative hypotheses?</strong></p>
-<p>H0:</p>
-<p>HA:</p>
+<p><em>H0: There’s no difference in outcome between garden staple and popsicle stick methods.</em></p>
+<p><em>HA: The popsicle stick method is more likely to succeed than the garden staple method.</em></p>
 </section>
 <section id="calculate-the-sample-statistic" class="level4">
 <h4 class="anchored" data-anchor-id="calculate-the-sample-statistic">Calculate the sample statistic</h4>
@@ -379,39 +380,53 @@ Note
 <p>Call the variable <code>diff_props</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>success_props <span class="ot">&lt;-</span> restoration <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(???) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prop_success =</span> ???)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(treatment) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prop_success =</span> <span class="fu">mean</span>(success))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>diff_props <span class="ot">&lt;-</span> ??? <span class="sc">-</span> ???</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>diff_props <span class="ot">&lt;-</span> success_props<span class="sc">$</span>prop_success[<span class="dv">2</span>] <span class="sc">-</span> success_props<span class="sc">$</span>prop_success[<span class="dv">1</span>]</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>diff_props</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1416667</code></pre>
+</div>
 </div>
 </section>
 <section id="estimate-the-null-distribution" class="level4">
 <h4 class="anchored" data-anchor-id="estimate-the-null-distribution">Estimate the null distribution</h4>
 <p><strong>Q4: What’s the standard error of the sample’s statistic?</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p_hat is the POOLED proportion, i.e. the overall proportion of success</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> ???</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># n's are the number of observations in each treatment</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># n1: number of garden staple observations</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># n2: number of popsicle stick observations</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> ???</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> ???</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>se_p_hat <span class="ot">&lt;-</span> ???</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p_hat is the POOLED proportion, i.e. the overall proportion of success</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">&lt;-</span> <span class="fu">sum</span>(restoration<span class="sc">$</span>success) <span class="sc">/</span> <span class="fu">nrow</span>(restoration)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># n's are the number of observations in each treatment</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># n1: number of garden staple observations</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># n2: number of popsicle stick observations</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(restoration<span class="sc">$</span>treatment <span class="sc">==</span> <span class="st">"Garden staple"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(restoration<span class="sc">$</span>treatment <span class="sc">==</span> <span class="st">"Popsicle stick"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>se_p_hat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> n1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> n2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If you calculated <code>se_p_hat</code> correctly, the following figure should depict the PDF of the null distribution. It should be a normal variable with mean equal to 0 and standard deviation equal to the standard error of <span class="math inline">\(\hat p\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff_prop =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="at">length.out =</span> <span class="dv">1000</span>),</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dnorm</span>(diff_prop, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> se_p_hat)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(null_dist, <span class="fu">aes</span>(diff_prop, density)) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"cornflowerblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> diff_props, <span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>null_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff_prop =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="at">length.out =</span> <span class="dv">1000</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dnorm</span>(diff_prop, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> se_p_hat)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(null_dist, <span class="fu">aes</span>(diff_prop, density)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"cornflowerblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> diff_props, <span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-null-distribution" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-null-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lab5-key_files/figure-html/fig-null-distribution-1.png" id="fig-null-distribution" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-null-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="calculate-the-p-value" class="level4">
@@ -432,13 +447,17 @@ Tip
 </div>
 <p><strong>Q5: Fill in the blanks to calculate the p-value</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p_val <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(???, <span class="at">mean =</span> ???, <span class="at">sd =</span> ???, ???)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>p_val</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p_val <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(diff_props, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> se_p_hat, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p_val</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.08251953</code></pre>
+</div>
 </div>
 </section>
 <section id="compare-p-value-to-critical-threshold" class="level4">
 <h4 class="anchored" data-anchor-id="compare-p-value-to-critical-threshold">Compare p-value to critical threshold</h4>
 <p><strong>Q6: How does your p-value compare to a critical threshold</strong> <span class="math inline">\(\alpha=0.05\)</span><strong>? How would you interpret that?</strong></p>
+<p><em>The p value is greater than the critical threshold, so we fail to reject the null hypothesis. Our data are not consistent with the hypothesis that the popsicle stick method leads to success more often than the garden staple method.</em></p>
 </section>
 </section>
 <section id="confidence-interval" class="level3">
@@ -485,6 +504,7 @@ Note
 <section id="identify-the-statistic-1" class="level4">
 <h4 class="anchored" data-anchor-id="identify-the-statistic-1">Identify the statistic</h4>
 <p><strong>Q7: What is the appropriate test statistic for this question?</strong></p>
+<p><em>Difference in proportions</em></p>
 </section>
 <section id="calculate-the-standard-error" class="level4">
 <h4 class="anchored" data-anchor-id="calculate-the-standard-error">Calculate the standard error</h4>
@@ -503,49 +523,71 @@ Note
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the proportions of the two treatments</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Let treatment 1 be "Garden staple"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>p_hat1 <span class="ot">&lt;-</span> ???</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Let treatment 2 be "Popsicle stick"</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>p_hat2 <span class="ot">&lt;-</span> ???</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># n1 and n2 remain the same from before</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate standard error</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>se_diff_props <span class="ot">&lt;-</span> ???</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>se_diff_props</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the proportions of the two treatments</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Let treatment 1 be "Garden staple"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>p_hat1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(restoration<span class="sc">$</span>success[restoration<span class="sc">$</span>treatment <span class="sc">==</span> <span class="st">"Garden staple"</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Let treatment 2 be "Popsicle stick"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>p_hat2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(restoration<span class="sc">$</span>success[restoration<span class="sc">$</span>treatment <span class="sc">==</span> <span class="st">"Popsicle stick"</span>])</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># n1 and n2 remain the same from before</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate standard error</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>se_diff_props <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat1) <span class="sc">/</span> n1 <span class="sc">+</span> p_hat2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat2) <span class="sc">/</span> n2)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>se_diff_props</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1010048</code></pre>
+</div>
 </div>
 <p>If you calculated <code>se_diff_props</code> correctly, the following figure should depict the PDF of the sampling distribution. It should be a normal variable with mean equal to the observed statistic in the sample and standard deviation equal to the standard error.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sampling_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff_prop =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="at">length.out =</span> <span class="dv">1000</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dnorm</span>(diff_prop, <span class="at">mean =</span> diff_props, <span class="at">sd =</span> se_diff_props)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sampling_dist, <span class="fu">aes</span>(diff_prop, density)) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"cornflowerblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> diff_props, <span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sampling_dist <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">diff_prop =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="at">length.out =</span> <span class="dv">1000</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">density =</span> <span class="fu">dnorm</span>(diff_prop, <span class="at">mean =</span> diff_props, <span class="at">sd =</span> se_diff_props)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sampling_dist, <span class="fu">aes</span>(diff_prop, density)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"cornflowerblue"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> diff_props, <span class="at">color =</span> <span class="st">"firebrick"</span>, <span class="at">linewidth =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-ci-sampling-distribution" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ci-sampling-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="lab5-key_files/figure-html/fig-ci-sampling-distribution-1.png" id="fig-ci-sampling-distribution" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-ci-sampling-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="construct-the-confidence-interval" class="level4">
 <h4 class="anchored" data-anchor-id="construct-the-confidence-interval">Construct the confidence interval</h4>
 <p>Using bootstrapping, you constructed the confidence interval using the 2.5% and 97.5% quantiles of the bootstrapped sampling distribution. Using the mathematical model, you use the function <code>qnorm()</code>. Whereas <code>pnorm()</code> returns the area under the curve, <code>qnorm()</code> tells you what value corresponds to a given area. In other words, they’re inverses of each other.</p>
-<p>If you wanted to shade in the middle 95% of the area in <strong>?@fig-ci-sampling-distribution</strong>, <code>qnorm()</code> would tell you the left and right boundaries.</p>
+<p>If you wanted to shade in the middle 95% of the area in <a href="#fig-ci-sampling-distribution" class="quarto-xref">Figure&nbsp;3</a>, <code>qnorm()</code> would tell you the left and right boundaries.</p>
 <p><strong>Q9: Fill in the blanks to use</strong> <code>qnorm()</code> <strong>in constructing the confidence interval.</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>diff_props_ci <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(???, <span class="at">mean =</span> ???, <span class="at">sd =</span> ???)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>diff_props_ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>diff_props_ci <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), <span class="at">mean =</span> diff_props, <span class="at">sd =</span> se_diff_props)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>diff_props_ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.05629908  0.33963242</code></pre>
+</div>
 </div>
 <p><strong>Q10: How would you interpret this confidence interval</strong></p>
+<p><em>We are 95% confident the true difference in proportions falls between -0.06 and 0.34.</em></p>
 </section>
 </section>
 </section>
 <section id="comparing-mathematical-and-randomization-approaches" class="level2">
 <h2 class="anchored" data-anchor-id="comparing-mathematical-and-randomization-approaches">Comparing mathematical and randomization approaches</h2>
 <p><strong>Q11: What are permutation tests and mathematical models <u>both</u> trying to estimate for hypothesis tests?</strong></p>
+<p><em>The sampling distribution of the statistic <strong>assuming the null hypothesis is true</strong>.</em></p>
 <p><strong>Q12: What are bootstrapping and mathematical models <u>both</u> trying to estimate for confidence intervals?</strong></p>
+<p><em>The sampling distribution of the statistic <strong>assuming the difference is real.</strong></em></p>
 <p><strong>Q13: What area under the curve is relevant to hypothesis tests? What R function calculates it for a mathematical model?</strong></p>
+<p><em>The area of the null distribution more extreme than the observed value. <code>pnorm()</code></em></p>
 <p><strong>Q14: What area under the curve is relevant to confidence intervals? What R function calculates it for a mathematical model?</strong></p>
+<p><em>The middle 95% of the area under the sampling distribution. <code>qnorm()</code></em></p>
 
 
 </section>
