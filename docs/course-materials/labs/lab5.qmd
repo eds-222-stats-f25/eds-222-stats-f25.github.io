@@ -262,7 +262,7 @@ ggplot(sampling_dist, aes(diff_prop, density)) +
 
 Using bootstrapping, you constructed the confidence interval using the 2.5% and 97.5% quantiles of the bootstrapped sampling distribution. Using the mathematical model, you use the function `qnorm()`. Whereas `pnorm()` returns the area under the curve, `qnorm()` tells you what value corresponds to a given area. In other words, they're inverses of each other.
 
-If you wanted to shade in the middle 95% of the area in [@fig-ci-sampling-distribution], `qnorm()` would tell you the left and right boundaries.
+If you wanted to shade in the middle 95% of the area in the figure above, `qnorm()` would tell you the left and right boundaries.
 
 **Q9: Fill in the blanks to use** `qnorm()` **in constructing the confidence interval.**
 
@@ -286,3 +286,22 @@ diff_props_ci
 **Q13: What area under the curve is relevant to hypothesis tests? What R function calculates it for a mathematical model?**
 
 **Q14: What area under the curve is relevant to confidence intervals? What R function calculates it for a mathematical model?**
+
+## Go further
+
+The `restoration` data frame contains data about the eelgrass shoot density of the plot post-restoration (`shoot_density_m2`). Use this data to do the following.
+
+1.  Construct the 95% CI of mean shoot density following restoration (ignoring the restoration method). Use a mathematical model. Recall the standard error of a mean is:
+
+$$
+SE(\bar x) = \frac{s}{\sqrt{n}}
+$$
+
+2.  Estimate the p-value of the difference in mean shoot density between the two restoration methods. Use a mathematical model. Recall the standard error of a difference in means, under the null hypothesis, is:
+
+$$
+SE(\bar{x_2}-\bar{x_1}) = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+$$
+
+3.  Repeat constructing the 95% CI of mean shoot density following restoration, but use bootstrapping instead of a mathematical model.
+4.  Repeat estimating the p-value of the difference in mean shoot density between the two restoration methods, but use a permutation test instead of a mathematical model.

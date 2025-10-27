@@ -273,6 +273,7 @@ window.Quarto = {
   <li><a href="#confidence-interval" id="toc-confidence-interval" class="nav-link" data-scroll-target="#confidence-interval">Confidence interval</a></li>
   </ul></li>
   <li><a href="#comparing-mathematical-and-randomization-approaches" id="toc-comparing-mathematical-and-randomization-approaches" class="nav-link" data-scroll-target="#comparing-mathematical-and-randomization-approaches">Comparing mathematical and randomization approaches</a></li>
+  <li><a href="#go-further" id="toc-go-further" class="nav-link" data-scroll-target="#go-further">Go further</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="lab5.qmd"><i class="bi bi-link-45deg"></i>Download Source</a></li></ul></div></nav>
     </div>
@@ -530,7 +531,7 @@ Note
 <section id="construct-the-confidence-interval" class="level4">
 <h4 class="anchored" data-anchor-id="construct-the-confidence-interval">Construct the confidence interval</h4>
 <p>Using bootstrapping, you constructed the confidence interval using the 2.5% and 97.5% quantiles of the bootstrapped sampling distribution. Using the mathematical model, you use the function <code>qnorm()</code>. Whereas <code>pnorm()</code> returns the area under the curve, <code>qnorm()</code> tells you what value corresponds to a given area. In other words, they’re inverses of each other.</p>
-<p>If you wanted to shade in the middle 95% of the area in <strong>?@fig-ci-sampling-distribution</strong>, <code>qnorm()</code> would tell you the left and right boundaries.</p>
+<p>If you wanted to shade in the middle 95% of the area in the figure above, <code>qnorm()</code> would tell you the left and right boundaries.</p>
 <p><strong>Q9: Fill in the blanks to use</strong> <code>qnorm()</code> <strong>in constructing the confidence interval.</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>diff_props_ci <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(???, <span class="at">mean =</span> ???, <span class="at">sd =</span> ???)</span>
@@ -546,6 +547,26 @@ Note
 <p><strong>Q12: What are bootstrapping and mathematical models <u>both</u> trying to estimate for confidence intervals?</strong></p>
 <p><strong>Q13: What area under the curve is relevant to hypothesis tests? What R function calculates it for a mathematical model?</strong></p>
 <p><strong>Q14: What area under the curve is relevant to confidence intervals? What R function calculates it for a mathematical model?</strong></p>
+</section>
+<section id="go-further" class="level2">
+<h2 class="anchored" data-anchor-id="go-further">Go further</h2>
+<p>The <code>restoration</code> data frame contains data about the eelgrass shoot density of the plot post-restoration (<code>shoot_density_m2</code>). Use this data to do the following.</p>
+<ol type="1">
+<li>Construct the 95% CI of mean shoot density following restoration (ignoring the restoration method). Use a mathematical model. Recall the standard error of a mean is:</li>
+</ol>
+<p><span class="math display">\[
+SE(\bar x) = \frac{s}{\sqrt{n}}
+\]</span></p>
+<ol start="2" type="1">
+<li>Estimate the p-value of the difference in mean shoot density between the two restoration methods. Use a mathematical model. Recall the standard error of a difference in means, under the null hypothesis, is:</li>
+</ol>
+<p><span class="math display">\[
+SE(\bar{x_2}-\bar{x_1}) = \sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}
+\]</span></p>
+<ol start="3" type="1">
+<li>Repeat constructing the 95% CI of mean shoot density following restoration, but use bootstrapping instead of a mathematical model.</li>
+<li>Repeat estimating the p-value of the difference in mean shoot density between the two restoration methods, but use a permutation test instead of a mathematical model.</li>
+</ol>
 
 
 </section>

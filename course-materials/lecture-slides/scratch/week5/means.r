@@ -39,16 +39,16 @@ ggsave("course-materials/lecture-slides/scratch/week5/3samples.png",
        height = 8,
        units = "in")
 
-# This is the sampling distribution
-ggplot()
+
+# confidence interval -----------------------------------------------------
 
 # Claim: a 95% confidence interval contains the population parameter 95% of the time
 
 # 1. Choose parameters and predictor
-p1 <- 0.45
-p2 <- 0.6
-n1 <- 100
-n2 <- 125
+p1 <- 0.42
+p2 <- 0.55
+n1 <- 60
+n2 <- 40
 
 # 2. Simulate many samples
 n_samples <- 1e4
@@ -87,6 +87,9 @@ tibble(sample = 1:n_samples,
   geom_pointrange() +
   scale_color_manual(values = c(`FALSE` = "firebrick", `TRUE` = "cornflowerblue")) +
   theme(legend.position = "none")
+
+
+# hypothesis test ---------------------------------------------------------
 
 # Claim: at alpha=0.05, p values reject the null hypothesis correctly 95% of the time
 
