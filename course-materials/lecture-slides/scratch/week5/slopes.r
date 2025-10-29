@@ -86,6 +86,16 @@ ggsave("course-materials/lecture-slides/scratch/week5/g_huxleyi_samples.png",
 # What are the null hypothesis and alternative hypotheses?
 # H0: beta1 = 0, HA: beta1 != 0
 
+ggplot(g_huxleyi_sample, aes(co2_umol_l, calcite_poc)) +
+  geom_point(shape = 21, stroke = 1.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick", linewidth = 2) +
+  labs(x = expression("CO" [2] ~ (mu * "mol l"^-1)),
+       y = "Calcite / POC")
+ggsave("course-materials/lecture-slides/scratch/week5/g_huxleyi_sample_only.png",
+       width = 5,
+       height = 5,
+       units = "in")
+
 # Randomization method
 # What variable would you permute?
 
