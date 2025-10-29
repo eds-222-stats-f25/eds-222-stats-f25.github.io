@@ -10,7 +10,7 @@ description: "Theme: Conducting Inference"
 |---------|--------|---------|
 | Lecture 1 | [Adventures in inference](lecture-slides/lecture5-1.pdf){target="_blank"} | [IMS Ch 18-21](https://openintrostat.github.io/ims/inference-tables.html){target="_blank"} |
 | Lab | [Mathematical inference in R](labs/lab5.qmd) ([key](labs/lab5-key.qmd)) | *None* |
-| Lecture 2 | Linear regression inference | [IMS Ch 24-25](https://openintrostat.github.io/ims/inf-model-slr.html){target="_blank"} |
+| Lecture 2 | [Linear regression inference](lecture-slides/lecture5-2.pdf){target="_blank"} | [IMS Ch 24-25](https://openintrostat.github.io/ims/inf-model-slr.html){target="_blank"} |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}

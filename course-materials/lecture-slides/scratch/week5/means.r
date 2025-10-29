@@ -93,10 +93,10 @@ tibble(sample = 1:n_samples,
 
 # Claim: at alpha=0.05, p values reject the null hypothesis correctly 95% of the time
 
-# 1. Choose parameters and predictor
+# 1. Choose parameters and predictor FOR THE NULL HYPOTHESIS
 p <- 0.5
-n1 <- 100
-n2 <- 125
+n1 <- 60
+n2 <- 40
 
 # 2. Simulate many samples
 n_samples <- 1e4
