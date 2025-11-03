@@ -8,7 +8,7 @@ description: "Theme: Conducting Inference"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Forks, pipes, and colliders | *None* |
+| Lecture 1 | [Forks, pipes, and colliders](lecture-slides/lecture6-1.pdf){target="_blank"} | *None* |
 | Lab | Midterm review | *None* |
 | Lecture 2 | Midterm 2 | *None* |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
