@@ -1,0 +1,131 @@
+---
+title: "Lab 7"
+subtitle: "The Color of Drinking Water"
+toc: true
+editor: visual
+format:
+  html:
+    other-links:
+      - text: Download Source
+        href: lab7.qmd
+      - text: Drinking Water Data
+        href: data/drinking_water.csv
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+## Learning objectives
+
+In today's lab you will...
+
+1.  Fit **logistic regression** models to binary (0/1, no/yes) outcomes
+2.  Interpret **coefficients** on the link scale
+3.  **Visualize** predictions
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+theme_set(theme_classic(14))
+set.seed(123)
+
+```
+
+## The color of drinking water
+
+One component of environmental justice is *distributive* justice, or the fair distribution of environmental harms and benefits across communities. For many distributive justice questions in the US, debates arise whether harms are distributed according to *class* or *race*. @switzer2017 analyzed Safe Drinking Water Act (SDWA) compliance records alongside demographic and economic data at the local government level to investigate whether class, race, or a combination of the two is associated with SDWA violations.
+
+## Before class
+
+Before we meet, please read [The Color of Drinking Water](https://mannyteodoro.com/wp-content/uploads/2014/03/SwitzerTeodoro-JAWWA-2017-Color-of-Drinking-Water.pdf) for context about this study. This is a 6-page summary of the study written for the general public.
+
+In class, we will begin to tackle the issues that arise from outcomes that don't fit cleanly into the linear regression framework we've been using up to this point. This week, we'll focus on **binary outcomes**. Recall the model specification we've used before:
+
+$$
+\begin{align}
+y &\sim Normal(\mu, \sigma) \\
+\mu &= \beta_0 + \beta_1 x
+\end{align}
+$$
+
+If we know $\beta_0$, $\beta_1$, and $\sigma$, we can simulate $y$ based on $x$. Here's an example:
+
+```{r}
+#| label: sim-example
+
+# Betas and sigma
+beta0 <- 5
+beta1 <- -2
+sigma <- 1.5
+
+# Predictor (randomly chosen)
+x <- rnorm(15, 0, 2)
+  
+# Response
+mu <- beta0 + beta1 * x
+y <- rnorm(15, mu, sigma)
+
+# Visualize
+ggplot(tibble(x, y), aes(x, y)) +
+  geom_point()
+
+```
+
+But what if $y$ can only be 0 or 1? For example, what if $y$ represents whether a local government recorded a SDWA violation? Recall from earlier weeks that we can use Binomial variables for binary outcomes. The following means "y is distributed as a Binomial variable with one trial and a probability of success p".
+
+$$
+y \sim Binomial(1, p)
+$$
+
+If SDWA violations always occur with a probability of 0.2, we can simulate them like this:
+
+```{r}
+#| label: sim-binom
+
+p <- 0.2
+violation <- rbinom(100, 1, p)
+
+ggplot(tibble(violation = violation == 1), aes(violation)) +
+  geom_bar()
+
+```
+
+But what if we want to know how $p$ varies with other factors, such as race and class? We might try this:
+
+$$
+\begin{align}
+\text{violation} &\sim Binomial(1, p) \\
+p &= \beta_0 + \beta_1 \text{PctHisp}
+\end{align}
+$$
+
+To see how the percentage of a local population that's Hispanic is associated with SDWA violations.
+
+Let's say when PctHisp is 0, the probability of a SDWA violation is 0.1 (i.e., $\beta_0=0.1$), and as the percent hispanic population increases by 1, the probability of a SDWA violation goes up by 0.02 (i.e., $\beta_1 = 0.02$). You might try to simulate that for populations with different Hispanic compositions like so:
+
+```{r}
+#| label: sim-binom2
+
+# Betas
+beta0 <- 0.1
+beta1 <- 0.02
+
+# Predictor
+pcthisp <- runif(15, 0, 100)
+
+# Response
+p <- beta0 + beta1 * pcthisp
+violation <- rbinom(15, n = 1, p = p)
+
+violation
+
+```
+
+But the response doesn't look right, does it? Before class, think about these two questions.
+
+**What is wrong with the response?**
+
+**What is the cause of the issue?**
