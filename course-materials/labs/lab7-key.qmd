@@ -1,0 +1,72 @@
+---
+title: "Lab 7"
+subtitle: "The Color of Drinking Water"
+toc: true
+editor: visual
+format:
+  html:
+    other-links:
+      - text: Download Source
+        href: lab7.qmd
+      - text: Drinking Water Data
+        href: data/drinking_water.csv
+editor_options: 
+  chunk_output_type: console
+---
+
+## Learning objectives
+
+In today's lab you will...
+
+1.  Fit **logistic regression** models to binary (0/1, no/yes) outcomes
+2.  Interpret **coefficients** on the link scale
+3.  **Visualize** predictions
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+theme_set(theme_classic(14))
+set.seed(123)
+
+```
+
+## Fitting logistic models
+
+In statistical notation, logistic models take the form:
+
+$$
+\begin{align}
+\text{BinaryOutcome} &\sim Binomial(1, p) \\
+logit(p) &= \beta_0 + \beta_1 \text{Predictor}
+\end{align}
+$$
+
+In R, you can fit a logistic model like this:
+
+``` r
+logistic_model <- glm(binary_outcome ~ predictor,
+                      data = my_data,
+                      family = binomial(link = "logit"))
+```
+
+**In both the notation and code above, identify the:**
+
+-   **Response family**
+
+-   **Link function**
+
+-   **Response**
+
+-   **Predictor**
+
+Read
+
+```{r}
+#| label: read-data
+
+
+
+```

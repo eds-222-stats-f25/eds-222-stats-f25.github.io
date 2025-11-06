@@ -8,16 +8,15 @@ description: "Theme: Non-normal Data"
 
 | Session | Topic  | Reading |
 |---------|--------|---------|
-| Lecture 1 | Logistic regression | [IMS Ch 9, 26](https://openintrostat.github.io/ims/model-logistic.html) |
+| Lecture 1 | Logistic regression | [Pre-class exercise](lecture-slides/pre-lecture7-1.qmd){target="_blank"} |
 | Lab | **No class** | *None* |
-| Lecture 2 | Color of drinking water | *None* |
+| Lecture 2 | Color of drinking water | [IMS Ch 9, 26](https://openintrostat.github.io/ims/model-logistic.html){target="_blank"} |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}
 
 | Assignment Type | Note                      |
 |-----------------|---------------------------|
-| Homework        | Homework 2 re-assessment due |
 | Homework        | Homework 3 posted         |
 | Final project   | Describe hypotheses with text and visuals |
 : {.hover .bordered tbl-colwidths="[20,30]"} 
