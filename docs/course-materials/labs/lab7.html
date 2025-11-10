@@ -267,7 +267,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning objectives</a></li>
-  <li><a href="#fitting-logistic-models" id="toc-fitting-logistic-models" class="nav-link" data-scroll-target="#fitting-logistic-models">Fitting logistic models</a></li>
+  <li><a href="#logistic-model-notation-and-r-code" id="toc-logistic-model-notation-and-r-code" class="nav-link" data-scroll-target="#logistic-model-notation-and-r-code">Logistic model notation and R code</a></li>
+  <li><a href="#read-and-explore-the-data" id="toc-read-and-explore-the-data" class="nav-link" data-scroll-target="#read-and-explore-the-data">Read and explore the data</a></li>
+  <li><a href="#fit-and-interpret-model" id="toc-fit-and-interpret-model" class="nav-link" data-scroll-target="#fit-and-interpret-model">Fit and interpret model</a></li>
+  <li><a href="#make-predictions" id="toc-make-predictions" class="nav-link" data-scroll-target="#make-predictions">Make predictions</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="lab7.qmd"><i class="bi bi-link-45deg"></i>Download Source</a></li><li><a href="data/drinking_water.csv"><i class="bi bi-link-45deg"></i>Drinking Water Data</a></li></ul></div></nav>
     </div>
@@ -283,17 +287,18 @@ window.Quarto = {
 <p>In today’s lab you will…</p>
 <ol type="1">
 <li>Fit <strong>logistic regression</strong> models to binary (0/1, no/yes) outcomes</li>
-<li>Interpret <strong>coefficients</strong> on the link scale</li>
+<li>Interpret <strong>coefficients</strong></li>
 <li><strong>Visualize</strong> predictions</li>
 </ol>
+<p>Complete sections <strong>Logistic model notation and R code</strong> and <strong>Read and explore the data</strong> before class.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="dv">14</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="dv">12</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="fitting-logistic-models" class="level2">
-<h2 class="anchored" data-anchor-id="fitting-logistic-models">Fitting logistic models</h2>
+<section id="logistic-model-notation-and-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-model-notation-and-r-code">Logistic model notation and R code</h2>
 <p>In statistical notation, logistic models take the form:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -312,7 +317,130 @@ logit(p) &amp;= \beta_0 + \beta_1 \text{Predictor}
 <li><p><strong>Response</strong></p></li>
 <li><p><strong>Predictor</strong></p></li>
 </ul>
-<p>Read</p>
+</section>
+<section id="read-and-explore-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-and-explore-the-data">Read and explore the data</h2>
+<p><strong>Read the dataset in drinking_water.csv.</strong></p>
+<p><strong>Describe what you think each of the columns represents.</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pwsid</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>pwsname</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>pctpov</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>pcthisp</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>health</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>medianincomehouse</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>violation</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>pcthisp_bin</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>pctpov_bin</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Create three figures summarizing the relationships between race, class, and SDWA violations.</strong></p>
+<p>Figure 1: A scatter plot showing the <em>proportion</em> of districts with SDWA violations in each <em>percent Hispanic bin</em>.</p>
+<p>Figure 2: A scatter plot showing the <em>proportion</em> of districts with SDWA violations in each <em>percent below-poverty bin</em>.</p>
+<p>Figure 3: A scatter plot showing the correlation between <em>percent Hispanic</em> and <em>percent below-poverty</em> at the district level.</p>
+</section>
+<section id="fit-and-interpret-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-and-interpret-model">Fit and interpret model</h2>
+<p>Our question is:</p>
+<p><em>How are SDWA violations distributed among communities by class and race?</em></p>
+<p>Let’s begin by investigating class in isolation. <strong>Fit a logistic model to see how <code>violation</code> responds to <code>pctpov</code></strong>.</p>
+<p>Just as we did with linear regression, you can inspect coefficient estimates, p-values, and confidence intervals using <code>summary()</code> and <code>confint()</code>.</p>
+<p><strong>What is the best estimate for the % Below Poverty coefficient?</strong></p>
+<p><strong>Is the coefficient significantly different than 0? Assume critical threshold of 0.05.</strong></p>
+<p><strong>What is the 95% CI for the coefficient?</strong></p>
+<p><strong>Based on the sign, what is the relationship between class and SDWA violations?</strong></p>
+</section>
+<section id="make-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="make-predictions">Make predictions</h2>
+<p>Interpreting the coefficients directly is pretty difficult with logistic regression! What is the difference between a coefficient of 0.1 and 0.2? Rather than interpreting the coefficient directly, it’s often easier to compare predictions.</p>
+<p>Once you have a model, you can make predictions using <code>predict()</code>. When calling <code>predict()</code>, the following parameters are important:</p>
+<ul>
+<li><p><code>object</code> The model you want to generate predictions from</p></li>
+<li><p><code>newdata</code> A data frame of predictors your want predictions for</p></li>
+<li><p><code>type</code> Do you want predictions on the <em>link</em> or <em>response</em> scale? By default, <code>predict()</code> shows the value of <span class="math inline">\(logit(p) = \beta_0 + \beta_1 x\)</span> (i.e., link-scale). To get the predicted <em>probability</em> (i.e., response-scale) set <code>type</code> to “response”.</p></li>
+<li><p><code>se.fit</code> If <code>se.fit</code> is <code>TRUE</code>, <code>predict()</code> will calculate the confidence interval of the response on the link scale. You can use that to get the confidence interval of <span class="math inline">\(p\)</span>. That will make a ribbon, similar to the confidence interval of <span class="math inline">\(\mu\)</span> you saw in linear regression.</p></li>
+</ul>
+<p>Here’s how to generate predictions (with CI) for a single predictor.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I use <code>expand_grid()</code> instead of <code>tibble()</code> when making the data frame of predictors because it gives you every combination of the values in the columns. That will be important when you have more than one predictor!</p>
+</div>
+</div>
+<p>That was just the best estimate. The following code adds the 95% CI for <span class="math inline">\(p\)</span>. It uses the <em>inverse link function</em> to go from link-scale to response-scale.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When constructing the 95% CI for <span class="math inline">\(p\)</span>, one thing remains the same and one thing has changed from constructing the 95% CI for <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>What remains the same:</strong> the sampling distribution is normal, so once you have the standard error you can use <code>qnorm()</code> to get the 2.5% and 97.5% quantiles.</p>
+<p><strong>What’s different:</strong> the sampling distribution exists on the <em>link scale</em>. In other words, the standard error is <span class="math inline">\(SE(logit(p))\)</span> rather than <span class="math inline">\(SE(p)\)</span>. So you have to get the best estimate and standard error on the link scale, then invert the link function to get back to <span class="math inline">\(p\)</span>.</p>
+</div>
+</div>
+<p>And here’s the fit with the 95% CI presented as the familiar ribbon.</p>
+<p><strong>What is the probability of a SDWA violation in a district where 5% of households are below the poverty line? When 50% are? Show the best estimate and 95% CI.</strong></p>
+</section>
+<section id="your-turn" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
+<p>Switzer and Teodoro demonstrated that the <em>interaction</em> between race and class is important for understanding the environmental justice dimensions of drinking water. You’ll investigate that here through the following steps.</p>
+<ol type="1">
+<li>Create a new model with an interaction term between <code>pctpov</code> and <code>pcthisp</code>.</li>
+<li>Use the summary and confidence intervals to answer the following questions:<br>
+<strong>What is the 95% CI for the % Hispanic coefficient?</strong><br>
+<strong>Is the interaction between class and race significantly different than 0?</strong></li>
+<li>Create a new predictor data frame with combinations of <em>both</em> predictors.</li>
+<li>Generate predictions, including both the best estimate and 95% CI.</li>
+<li>Plot the predictions. In your plot, put <code>pcthisp</code> on the x-axis and probability of SDWA violations on the y-axis. Indicate <code>pctpov</code> using color and fill. To make this work, you’ll have to filter your predictions to a few levels of <code>pctpov</code> (e.g., 0, 25, 50, and 75).</li>
+</ol>
+<p>The coefficient for an interaction term in a logistic regression model is very difficult to interpret on its own! But that value has important consequences for the lives of millions of people. Predictions are usually more straightforward to interpret than coefficients. Use your figure and the outputs of <code>summary()</code> and <code>confint()</code> to reflect on the following prompt. Reply to the corresponding thread on Slack with your reflection to get 1 token.</p>
+<p><strong>In plain language, what is the relationship between race, class, and SDWA violations? Which communities face the greatest risks associated with drinking water? How would you use the statistical outputs (model summary, prediction figure) to describe that risk quantitatively? How could those statistical outputs be misinterpreted?</strong></p>
 
 
 </section>
