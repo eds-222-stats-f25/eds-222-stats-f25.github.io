@@ -83,7 +83,7 @@ drinking_water <- read_csv("data/drinking_water.csv",
 **Describe what you think each of the columns represents.**
 
 | Column | Meaning |
-|------------------------------------|------------------------------------|
+|----|----|
 | `pwsid` | ID of the public water system |
 | `pwsname` | Name of the public water system |
 | `pctpov` | Percent of the district under the poverty line |
