@@ -13,4 +13,4 @@ All assignments are due at 11:59 PM on the dates listed in the table, below.
 |------------------------|--------------|-----------|------------------------|
 | [Exploring uncertainty](https://classroom.github.com/a/CJ_vQ8h7)  | 10/8         | 10/17     | 10/31                  |
 | [Conducting inference](https://classroom.github.com/a/DE-aHQzy)   | 10/29        | 11/7      | 11/21                  |
-| Non-normal data        | 11/12        | 11/26     | 12/5                   |   
+| [Non-normal data](https://classroom.github.com/a/rpZMdg1E)        | 11/12        | 11/26     | 12/5                   |   
