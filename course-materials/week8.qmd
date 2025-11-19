@@ -10,7 +10,7 @@ description: "Theme: Non-normal Data"
 |---------|--------|---------|
 | Lecture 1 | [Poisson regression](lecture-slides/lecture8-1.pdf){target="_blank"} | *None* |
 | Lab | [California wildfire occurrence](labs/lab8.qmd) | *None* |
-| Lecture 2 | Spatial and temporal autocorrelation | *None* |
+| Lecture 2 | [Spatial and temporal autocorrelation](lecture-slides/lecture8-2.pdf){target="_blank"} | *None* |
 : {.hover .bordered tbl-colwidths="[25,50,25]"} 
 
 ## {{< fa pencil title="pencil" >}} Assignment Reminders {#assignment-reminders}

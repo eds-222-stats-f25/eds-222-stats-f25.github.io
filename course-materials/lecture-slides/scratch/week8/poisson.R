@@ -80,6 +80,3 @@ ggsave("course-materials/lecture-slides/scratch/week8/links.png",
        units = "in")
 
 
-
-
-

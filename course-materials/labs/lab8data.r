@@ -111,7 +111,7 @@ fire_subset <- wildfires_lg %>%
 ggplot() +
   geom_spatvector(data = california, fill = "#4DDDDD99") +
   geom_spatvector(data = fire_subset, fill = "firebrick", color = NA) +
-  facet_wrap(~fire_year) +
+  facet_wrap(~fire_year, nrow = 1) +
   scale_x_continuous(limits = c(-125, -113), breaks = seq(-125, -113, by = 4)) +
   scale_y_continuous(limits = c(31, 43), breaks = seq(31, 43, by = 4)) +
   theme(panel.grid = element_line(color = "#CCCCCC88", 
@@ -178,6 +178,40 @@ ggsave("course-materials/labs/images/fire_preds_pi.png",
        width = 6,
        units = "in")
 
+
+
+
+fire_mod_lm <- lm(n_fires ~ mean_vpd_kpa, wildfire_weather)
+fire_pred_lm <- fire_grid %>% 
+  mutate(n_fires = predict(fire_mod_lm, newdata = .),
+         n_fires_lwr = predict(fire_mod_lm, newdata = fire_grid, interval = "confidence")[, "lwr"],
+         n_fires_upr = predict(fire_mod_lm, newdata = fire_grid, interval = "confidence")[, "upr"],
+         n_fires_pi_lwr = qnorm(0.025, n_fires, summary(fire_mod_lm)$sigma),
+         n_fires_pi_upr = qnorm(0.975, n_fires, summary(fire_mod_lm)$sigma))
+ggplot(wildfire_weather, aes(mean_vpd_kpa, n_fires)) +
+  geom_point(aes(fill = fire_year), 
+             shape = 21,
+             stroke = 1,
+             size = 4,
+             color = "white") +
+  geom_ribbon(aes(ymin = n_fires_lwr, ymax = n_fires_upr),
+              data = fire_pred_lm,
+              alpha = 0.2) +
+  geom_line(data = fire_pred_lm,
+            linewidth = 2,
+            color = "cornflowerblue") +
+  geom_ribbon(aes(ymin = n_fires_pi_lwr, ymax = n_fires_pi_upr),
+              data = fire_pred_lm,
+              fill = "magenta",
+              alpha = 0.2) +
+  ggrepel::geom_label_repel(aes(label = fire_year), 
+                            filter(wildfire_weather, fire_year == 2007),
+                            nudge_x = -0.1) +
+  scale_fill_steps2(midpoint = 2002, low = "navy", mid = "gold", high = "firebrick") +
+  labs(x = "Mean VPD (kPa)",
+       y = "Fires >10k acres (n)",
+       fill = "Year") +
+  theme_classic(14)
 
 
 
